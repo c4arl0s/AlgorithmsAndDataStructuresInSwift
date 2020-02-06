@@ -1,5 +1,5 @@
-# AlgorithmsAndDataStructuresInSwift
-AlgorithmsAndDataStructuresInSwift
+# Algorithms And Data Structures In Swift
+
 
 1. [Recursividad]()
 
