@@ -3,7 +3,29 @@
 
 1. [Recursividad]()
 
-# 1. Recursividad
+# 1. Recursion
+
+Is a way to solve a reocurring problem repeatedly solving similar subproblems
+
+```swift
+func r() {
+    r()
+}
+```
+
+or indirectly
+
+```swift
+func r() {
+    g()
+}
+
+func g() {
+    r()
+}
+```
+
+### A linked list can be described as a list node followed by a linked list.
 
 ```swift
 class Node {
@@ -39,3 +61,15 @@ value of nodo2
 value of nodo3
 ```
 
+### Recursion won't necessarily produce faster or more efficient code.
+### It usually provides an elegant alternative to iterate approaches and requires fewer lines of code.
+
+# How does recursion work ? 
+
+ n! = 1 x 2 x 3 x ... x n
+ 
+ ```func factorial(number: UInt64) -> UInt64 {
+    return number < 2 ? 1 : number * factorial(number: n-1)
+ }
+ ```
+ 
