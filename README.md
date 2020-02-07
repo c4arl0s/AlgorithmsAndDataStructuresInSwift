@@ -8,6 +8,7 @@
 Is a way to solve a reocurring problem repeatedly solving similar subproblems
 
 ```swift
+// a function calls itself
 func r() {
     r()
 }
@@ -16,6 +17,7 @@ func r() {
 or indirectly
 
 ```swift
+// a function call it from another function
 func r() {
     g()
 }
