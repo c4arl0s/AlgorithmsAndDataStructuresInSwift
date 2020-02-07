@@ -68,8 +68,9 @@ value of nodo3
 
  n! = 1 x 2 x 3 x ... x n
  
- ```func factorial(number: UInt64) -> UInt64 {
+ ```swift
+ func factorial(number: UInt64) -> UInt64 {
     return number < 2 ? 1 : number * factorial(number: n-1)
  }
  ```
- 
+
