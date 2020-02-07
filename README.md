@@ -1,7 +1,7 @@
 # Algorithms And Data Structures In Swift
 
 
-1. [Recursividad]()
+1. [Recursion]()
 
 # 1. Recursion
 
