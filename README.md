@@ -1,9 +1,18 @@
 # Algorithms And Data Structures In Swift
 
+1. [Introduction]()
+2. [The Big-O Notation]()
+3. [Recursion]()
+4. [The Power of Algorithms]()
+5. [Generics]()
+6. [The Build-In Swift collection Types]()
+7. [Basic Sorting]()
+8. [Advance Sorting]()
+
 
 1. [Recursion]()
 
-# 1. Recursion
+# 3. Recursion
 
 Is a way to solve a reocurring problem repeatedly solving similar subproblems
 
