@@ -45,6 +45,21 @@
 # [Algorithms And Data Structures In Swift](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 
 # 1. [Introduction](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+This book it is just for fundamental knowledge about algorithms and data structures.
+
+# Prerequisites.
+
+This book is beginner-friendly. Prior programming experience may be helpful, but you need not have actually worked with the Swift itself.
+
+To implement exercises in this book, you will need a Mac.
+You will also need Xcode 9, at least.
+
+We are going to use modern Swift 4 to implement the source code in this course.
+
+Swift 4 added some useful enhancements and new features. All the samples are compatible with the latest Swift version. I am going to update the source code as changes in the language make it necessary.
+
+
 # 	* [Why you should learn algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
@@ -130,6 +145,9 @@ value of nodo3
  ```
 
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+
+
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
