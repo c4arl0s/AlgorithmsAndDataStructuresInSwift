@@ -61,6 +61,16 @@ Swift 4 added some useful enhancements and new features. All the samples are com
 
 
 # 	* [Why you should learn algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Computer algorithms have been developed and refined over the last couple of decades. The study of algorithms is fundamental to any programmer who plans to develop a software system that is scalable and performant.
+
+Once we got past the basic "Hello World" beginner applications, we begin to realize that complex applications require a different approach. The software which used to work nicely during our test becomes incredible slow and frequently crashes in real-world situations. The reason is that we have not prepared our system for real-life usage: While it ran without issues with small datasets during our tests, it fails miserably when the reality kicks in.
+
+Algorithms are indispensable to building software that is capable of managing large amounts of data or solving complex problems efficiently.
+
+Besides, you will probably come across algorithm and data structure related questions during job interviews.
+
+
 # 2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
