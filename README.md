@@ -1,6 +1,6 @@
 # Algorithms And Data Structures In Swift
 
-1. [Introduction]https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#1-introduction()
+1. [Introduction](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#1-introduction)
 	* [Why you should learn algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-why-you-should-learn-algorithms)
 2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#2-the-big-o-notation)
 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-constant-time-complexity)
@@ -79,10 +79,15 @@ The best way to understand the Big-O notation thoroughly (a fondo) is through co
 
 Here are the common orders of growth - or complexities - we are going to talk about this chapter:
 
-	* Constant Time
-	* Linear Time
-	* Quadratic Time
-	* Logarithmic Time
+**Constant Time**: Describes an algorithm that will always execute in the same amount of time, regardless of the input size.
+
+**Linear Time**: Describes a algorithm whose performance will grow linearly and in direct proportion to the size of the input data set.
+
+**Quadratic Time**: Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This behavior is typical with algorithms that involve nested iterations over the data set. Deeper nested iterations will result in O(N3) (cubic time), O(N4) quartic time and worse.
+
+**Logarithmic Time**: Represents a highly efficient algorithm, used by the binary search technique for example.
+
+We will cover the basics of Big-O. This knowledge is sufficient to understand the efficiency of the sorting algorithms presented in this course.
 
 ![Screen Shot 2020-05-30 at 10 54 31](https://user-images.githubusercontent.com/24994818/83332998-fab74c00-a263-11ea-8380-376c879f164b.png)
 
@@ -91,7 +96,6 @@ This graph visualizes the running times of some of the most popular sorting algo
 When the input count is small, all algorithms perform almost equality.
 
 Actually, when testing with small datasets, we may even have the impression that the algorithms with a logarithmic complexity has the worst performance; however, as the size of the datasets grows, we will clearly see the differences.
-
 
 # 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
