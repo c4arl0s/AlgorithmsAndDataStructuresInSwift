@@ -72,6 +72,27 @@ Besides, you will probably come across algorithm and data structure related ques
 
 
 # 2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+The **Big-O notation** is a mathematical model used in computer science to describe the efficiency of algorithms as a functions of their input size.
+
+The best way to understand the Big-O notation thoroughly (a fondo) is through code examples. Therefore, I am going to illustrate each concept using swift coding.
+
+Here are the common orders of growth - or complexities - we are going to talk about this chapter:
+
+	* Constant Time
+	* Linear Time
+	* Quadratic Time
+	* Logarithmic Time
+
+![Screen Shot 2020-05-30 at 10 54 31](https://user-images.githubusercontent.com/24994818/83332998-fab74c00-a263-11ea-8380-376c879f164b.png)
+
+
+This graph visualizes the running times of some of the most popular sorting algorithms. As the input size increases, the performance differences become increasingly evident.
+When the input count is small, all algorithms perform almost equality.
+
+Actually, when testing with small datasets, we may even have the impression that the algorithms with a logarithmic complexity has the worst performance; however, as the size of the datasets grows, we will clearly see the differences.
+
+
 # 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
