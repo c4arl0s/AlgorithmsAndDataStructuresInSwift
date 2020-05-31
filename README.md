@@ -1,45 +1,55 @@
 # Algorithms And Data Structures In Swift
 
-1. [Introduction](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#1-introduction)
-	* [Why you should learn algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-why-you-should-learn-algorithms)
-2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#2-the-big-o-notation)
-	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-constant-time-complexity)
-	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-linear-time-complexity)
-	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-quadratic-time-complexity)
-	* [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-hints-of-polinomial-time-complexity)
-	* [Logarithmic Time](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-logarithmic-time)
-	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-summary)
-3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#3-recursion-1)
-	* [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-what-is-recursion)
-	* [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-how-does-recursion-work)
-4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#4-the-power-of-algorithms)
-	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-calculate-sumn)
-	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-pair-matching-challenge)
-	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-find-the-equilibrium-index)
-	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-summary-1)
-5. [Generics](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#5-generics)
-	* [Why Generics?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-why-generics)
-	* [Generic Types](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-generic-types)
-	* [Generic Functions](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-generic-functions)
-6. [The Build-In Swift collection Types](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#6-the-build-in-swift-collection-types)
-	* [The Array](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-array)
-	* [Accessing the Array](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-accessing-the-array)
-	* [Modifying the Array](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-modifying-the-array)
-	* [The Set](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-set)
-	* [Accesing and Modifying the Set](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-accesing-and-modifying-the-set)
-	* [Set Operations](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-set-operations)
-	* [The Hashable Protocol](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-hashable-protocol)
-	* [The Dictionary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-dictionary)
-	* [Creating Dictionaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-creating-dictionaries)
-	* [Heterogeneous Dictionaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-heterogeneous-dictionaries)
-	* [Accesing & Modifying the contents of a Dictionary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-accesing--modifying-the-contents-of-a-dictionary)
-7. [Basic Sorting](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#7-basic-sorting)
-	* [Selection Sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-selection-sort)
-	* [Insertion Sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-insertion-sort)
-	* [Bubble Sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-bubble-sort)
-8. [Advance Sorting](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#8-advance-sorting)
-	* [The merge sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-merge-sort)
-	* [QuickSort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-quicksort)
+1. [Introduction]()
+2. [The Big-O Notation]()
+3. [Recursion]()
+4. [The Power of Algorithms]()
+5. [Generics]()
+6. [The Build-In Swift collection Types]()
+7. [Basic Sorting]()
+8. [Advance Sorting]()
+
+
+# 1. [Introduction](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#1-introduction)
+ * [Why you should learn algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-why-you-should-learn-algorithms)
+# 2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#2-the-big-o-notation)
+ * [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-constant-time-complexity)
+ * [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-linear-time-complexity)
+ * [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-quadratic-time-complexity)
+ * [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-hints-of-polinomial-time-complexity)
+ * [Logarithmic Time](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-logarithmic-time)
+ * [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-summary)
+# 3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#3-recursion-1)
+ * [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-what-is-recursion)
+ * [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-how-does-recursion-work)
+# 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#4-the-power-of-algorithms)
+ * [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-calculate-sumn)
+ * [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-pair-matching-challenge)
+ * [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-find-the-equilibrium-index)
+ * [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-summary-1)
+# 5. [Generics](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#5-generics)
+ * [Why Generics?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-why-generics)
+ * [Generic Types](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-generic-types)
+ * [Generic Functions](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-generic-functions)
+# 6. [The Build-In Swift collection Types](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#6-the-build-in-swift-collection-types)
+ * [The Array](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-array)
+ * [Accessing the Array](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-accessing-the-array)
+ * [Modifying the Array](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-modifying-the-array)
+ * [The Set](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-set)
+ * [Accesing and Modifying the Set](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-accesing-and-modifying-the-set)
+ * [Set Operations](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-set-operations)
+ * [The Hashable Protocol](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-hashable-protocol)
+ * [The Dictionary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-dictionary)
+ * [Creating Dictionaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-creating-dictionaries)
+ * [Heterogeneous Dictionaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-heterogeneous-dictionaries)
+ * [Accesing & Modifying the contents of a Dictionary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-accesing--modifying-the-contents-of-a-dictionary)
+# 7. [Basic Sorting](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#7-basic-sorting)
+ * [Selection Sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-selection-sort)
+ * [Insertion Sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-insertion-sort)
+ * [Bubble Sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-bubble-sort)
+# 8. [Advance Sorting](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#8-advance-sorting)
+ * [The merge sort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-the-merge-sort)
+ * [QuickSort](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-quicksort)
 
 
 # [Algorithms And Data Structures In Swift](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
@@ -98,6 +108,125 @@ When the input count is small, all algorithms perform almost equality.
 Actually, when testing with small datasets, we may even have the impression that the algorithms with a logarithmic complexity has the worst performance; however, as the size of the datasets grows, we will clearly see the differences.
 
 # 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Constant Time describes an algorithm that will always require the same amount of time to execute, regardless of the input size.
+
+Here is what we get if we visualize the running time of an algorithm that executes in constant time.
+
+![Screen Shot 2020-05-31 at 11 16 44](https://user-images.githubusercontent.com/24994818/83361893-7f809380-a352-11ea-8e70-af8eaebbe253.png)
+
+The input size does not affect the execution time. In other words, the execution time remains constant.
+
+An algorithm which has a constant time complexity will run for the same amount of time whether it operates on one or on several thousand or million entries.
+
+We will implement a utility class for measuring the performance. We will use this utility class to perform measurements in the current demo and several other upcoming project.
+
+To illustrate the constant time complexity, we will create a function that performs a check on an array.
+
+The second example relies o the hash map lookup. We are going to compare the times required to retrieve values based on their keys from Swift dictionaries from Swift dictionaries of various sizes. If implemented correctly, the hash map lookup should happen in constant time.
+
+First, we will implement the benchmarking utility. The BenchTimer class has a single method called measureBlock(closure:).
+
+```swift
+import Foundation
+import QuartzCore
+
+public class BenchTimer {
+    public static func measureBlock(closure:() -> Void) -> CFTimeInterval {
+        let runCount = 10
+        var executionTimes = Array<Double>(repeating: 0.0, count: runCount)
+        for index in 0..<runCount {
+            let startTime = CACurrentMediaTime()
+            closure()
+            let endTime = CACurrentMediaTime()
+            let executionTime = endTime - startTime
+            executionTimes[index] = executionTime
+        }
+        return (executionTimes.reduce(0, +)) / Double(runCount)
+    }
+}
+```
+
+The **measured(closure:)** type method takes a closure argument. The measured code is executed times, and we store the individual run times in an array.
+
+We rely on the **QuartzCore** framework's **CACurrent-MediaTime()** function to retrieve the current absolute time.
+
+Unlike **NSDate** or **CFAbsoluteTimeGetCurrent()**, **CACurrentMediaTime()** is reliable since it is not subject to changes in the external time reference.
+
+The measured block gets executed between querying the **startTime** and **endTime**; the run time is then The measured block gets executed between querying the startTime and endTime, the run time is then stored in the executionTimes array.
+
+After ten iterations, we calculate the average execution time. The reduce() array function calls the closure sequentially on all the array elements, which in our case sums up all the items in the array.
+
+Finally, we divide the result by the number of iterations, which gives us the average execution time.
+
+Next, we implement a function, which takes an array and checks whether the first element is 0.
+
+```swift
+func startsWithZero(array: [Int]) -> Bool {
+    guard array.count != 0 else { return false }
+    return array.first == 0 ? true : false
+}
+```
+
+This simple executes in constant time, that is, the run time should be the same regardless of the size of the input array.
+
+Let's prove our theory. We will invoke the startsWithZero() function with three arrays. The first array has only thee elements, the second one has 10,000 entries and the third array is huge, with 1,000,000 items.
+
+```swift
+import Foundation
+import QuartzCore
+
+public class BenchTimer {
+    public static func measureBlock(closure:() -> Void) -> CFTimeInterval {
+        let runCount = 10
+        var executionTimes = Array<Double>(repeating: 0.0, count: runCount)
+        for index in 0..<runCount {
+            let startTime = CACurrentMediaTime()
+            closure()
+            let endTime = CACurrentMediaTime()
+            let executionTime = endTime - startTime
+            executionTimes[index] = executionTime
+        }
+        return (executionTimes.reduce(0, +)) / Double(runCount)
+    }
+}
+
+func startsWithZero(array: [Int]) -> Bool {
+    guard array.count != 0 else { return false }
+    return array.first == 0 ? true : false
+}
+
+var verySmallArray = [1,0,0]
+var executionTime = BenchTimer.measureBlock {
+    _ = startsWithZero(array: verySmallArray)
+}
+
+print("Average startsWithZero() execution time for array with \(verySmallArray.count) elements is \(executionTime)")
+
+var mediumArray = Array<Int>(repeating: 0, count: 1000)
+executionTime = BenchTimer.measureBlock {
+    _ = startsWithZero(array: mediumArray)
+}
+
+print("Average startsWithZero() execution time for array with \(mediumArray.count) elements is \(executionTime)")
+
+var hugeArray = Array<Int>(repeating: 0, count: 1000000)
+executionTime = BenchTimer.measureBlock {
+    _ = startsWithZero(array: hugeArray)
+}
+
+print("Average startsWithZero() execution time for array with \(hugeArray.count) elements is \(executionTime)")
+```
+
+execute and see
+
+```c
+Average startsWithZero() execution time for array with 3 elements is 0.002553028399870527
+Average startsWithZero() execution time for array with 1000 elements is 0.00010468139989825432
+Average startsWithZero() execution time for array with 1000000 elements is 0.00013025689986534417
+Our benchmark shows that the size of the input array does not affect the run time. There are only negligible differences in the order of microsecods.
+```
+
 # 	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
