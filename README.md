@@ -1,13 +1,13 @@
 # Algorithms And Data Structures In Swift
 
-1. [Introduction]()
-2. [The Big-O Notation]()
-3. [Recursion]()
-4. [The Power of Algorithms]()
-5. [Generics]()
-6. [The Build-In Swift collection Types]()
-7. [Basic Sorting]()
-8. [Advance Sorting]()
+1. [Introduction](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#1-introduction)
+2. [The Big-O Notation](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#2-the-big-o-notation)
+3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#3-recursion)
+4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#4-the-power-of-algorithms)
+5. [Generics](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#5-generics)
+6. [The Build-In Swift collection Types](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#6-the-build-in-swift-collection-types)
+7. [Basic Sorting](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#7-basic-sorting)
+8. [Advance Sorting](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#8-advance-sorting)
 
 
 # 1. [Introduction](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#1-introduction)
@@ -147,6 +147,9 @@ public class BenchTimer {
 }
 ```
 
+Remember the ways you can declare an array] [in Array Types Chapter](https://github.com/c4arl0s/Swift#2-array-types)
+Remember how to fill an array with a value in [Working with arrays](https://github.com/c4arl0s/Swift#3-working-with-arrays)
+
 The **measured(closure:)** type method takes a closure argument. The measured code is executed times, and we store the individual run times in an array.
 
 We rely on the **QuartzCore** framework's **CACurrent-MediaTime()** function to retrieve the current absolute time.
@@ -155,9 +158,9 @@ Unlike **NSDate** or **CFAbsoluteTimeGetCurrent()**, **CACurrentMediaTime()** is
 
 The measured block gets executed between querying the **startTime** and **endTime**; the run time is then The measured block gets executed between querying the startTime and endTime, the run time is then stored in the executionTimes array.
 
-After ten iterations, we calculate the average execution time. The reduce() array function calls the closure sequentially on all the array elements, which in our case sums up all the items in the array.
+After ten iterations, we calculate the **average execution time**. The **reduce()** array function calls the closure sequentially on all the array elements, which in our case sums up all the items in the array.
 
-Finally, we divide the result by the number of iterations, which gives us the average execution time.
+Finally, we divide the result by the number of iterations, which gives us **the average execution time.**
 
 Next, we implement a function, which takes an array and checks whether the first element is 0.
 
@@ -190,26 +193,42 @@ public class BenchTimer {
         return (executionTimes.reduce(0, +)) / Double(runCount)
     }
 }
+```
 
+- Create a method to verify if the first element of an array is Zero
+
+```swift
 func startsWithZero(array: [Int]) -> Bool {
     guard array.count != 0 else { return false }
     return array.first == 0 ? true : false
 }
+```
 
+- Test a very small array
+
+```swift
 var verySmallArray = [1,0,0]
 var executionTime = BenchTimer.measureBlock {
     _ = startsWithZero(array: verySmallArray)
 }
 
 print("Average startsWithZero() execution time for array with \(verySmallArray.count) elements is \(executionTime)")
+``` 
 
+- Test a medium Array
+
+```swift
 var mediumArray = Array<Int>(repeating: 0, count: 1000)
 executionTime = BenchTimer.measureBlock {
     _ = startsWithZero(array: mediumArray)
 }
 
 print("Average startsWithZero() execution time for array with \(mediumArray.count) elements is \(executionTime)")
+```
 
+- Test a huge array
+
+```swift
 var hugeArray = Array<Int>(repeating: 0, count: 1000000)
 executionTime = BenchTimer.measureBlock {
     _ = startsWithZero(array: hugeArray)
@@ -218,14 +237,74 @@ executionTime = BenchTimer.measureBlock {
 print("Average startsWithZero() execution time for array with \(hugeArray.count) elements is \(executionTime)")
 ```
 
-execute and see
+- execute and see
 
-```c
+```console
 Average startsWithZero() execution time for array with 3 elements is 0.002553028399870527
 Average startsWithZero() execution time for array with 1000 elements is 0.00010468139989825432
 Average startsWithZero() execution time for array with 1000000 elements is 0.00013025689986534417
 Our benchmark shows that the size of the input array does not affect the run time. There are only negligible differences in the order of microsecods.
 ```
+
+Another Algorithm which runs in constant time is the hash-map lookup.
+We will use the **generateDictionary(size:)** helper function method to create custom-sized dictionaries.
+
+```swift
+let smallDictionary = ["one": 1, "two": 2, "three": 3]
+var executionTime = BenchTimer.measureBlock {
+    _ = smallDictionary["two"]
+}
+print("Average lookup time in a dictionary with \(smallDictionary.count) elments: \(executionTime)")
+```
+
+```console
+Average lookup time in a dictionary with 3 elments: 0.00010266969911754131
+```
+
+- Create a method to generate dictionaries
+
+```swift
+func generatesDictionaries(size: Int) -> Dictionary<String,Int> {
+    var result = Dictionary<String,Int>()
+    guard  size > 0 else { return result }
+    for index in 0..<size {
+        let key = String(index)
+        result[key] = index
+    }
+    return result
+}
+```
+
+- Use it to medium sizes
+
+```swift
+let mediumDictionary = generatesDictionaries(size: 500)
+executionTime = BenchTimer.measureBlock {
+    _ = mediumDictionary["324"]
+}
+print("Average lookup time in a dictionary with \(mediumDictionary.count) elements: \(executionTime)")
+```
+
+- Use it to huge sizes
+
+```swift
+let hugeDictionary = generatesDictionaries(size: 100000)
+executionTime = BenchTimer.measureBlock {
+    _ = hugeDictionary["55555"]
+}
+print("Average lookup time in a dictionary with \(hugeDictionary.count) elements: \(executionTime)")
+```
+
+```console
+Average lookup time in a dictionary with 3 elments: 0.0001310078994720243
+Average lookup time in a dictionary with 500 elements: 8.133249793900177e-05
+Average lookup time in a dictionary with 100000 elements: 0.0001048646998242475
+```
+
+As you will see after the demo, the time it takes to find an element does not depend on the size of the dictionary.
+
+Constant time algorithms are great because they are not affected by any of the input parameters. However, it is not always possible to come up with a solution which runs in constant time.
+
 
 # 	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
