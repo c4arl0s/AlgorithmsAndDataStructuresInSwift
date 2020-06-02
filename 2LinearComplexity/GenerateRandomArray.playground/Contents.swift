@@ -53,3 +53,23 @@ executionTime = BenchTimer.measureBlock {
     _ = sum(array: array10000)
 }
 print("Average sum() execution time for \(array10000.count) elements: \(executionTime)")
+
+// returns the number o odd and even elements from the input array
+func countOddAndEven(array: [Int]) -> (event: UInt, odd: UInt) {
+    var even: UInt = 0
+    var odd: UInt = 0
+    
+    for element in array {
+        if element % 2 == 0 {
+            even += 1
+        } else {
+            odd += 1
+        }
+    }
+    return (even, odd)
+}
+
+//test method
+
+let numberOfOddAndEven = countOddAndEven(array: [1, 2, 3, 4, 5])
+print("number Of Odd And Even are \(numberOfOddAndEven)")

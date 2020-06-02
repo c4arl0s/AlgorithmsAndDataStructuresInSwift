@@ -410,7 +410,36 @@ Average sum() execution time for 1000 elements: 0.07036858479996226
 Average sum() execution time for 10000 elements: 0.7427568947002328
 ```
 
-The **sum(array:) function iterates through all the elements of the array. Thus, it is normal that the execution time increases proportionally with the size of the array.
+The **sum(array:)** function iterates through all the elements of the array. Thus, it is normal that the execution time increases proportionally with the size of the array.
+
+Here is another function which needs to iterate through all the elements of the input list.
+
+```swift
+func countOddAndEven(array: [Int]) -> (event: UInt, odd: UInt) {
+    var even: UInt = 0
+    var odd: UInt = 0
+    
+    for element in array {
+        if element % 2 == 0 {
+            even += 1
+        } else {
+            odd += 1
+        }
+    }
+    return (even, odd)
+}
+```
+
+- Test method
+
+```swift
+let numberOfOddAndEven = countOddAndEven(array: [1, 2, 3, 4, 5])
+print("number Of Odd And Even are \(numberOfOddAndEven)")
+```
+
+```console
+number Of Odd And Even are (event: 2, odd: 3)
+```
 
 # 	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
