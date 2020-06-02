@@ -307,6 +307,111 @@ Constant time algorithms are great because they are not affected by any of the i
 
 
 # 	* [Linear Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Linear Time describes an algorithm whose performance will grow linearly and in direct proportion to size of the input dataset
+
+This graph represents the running time of an algorithm which executes in linear time.
+
+![Screen Shot 2020-06-02 at 10 17 10](https://user-images.githubusercontent.com/24994818/83537507-3ea38e80-a4ba-11ea-9aec-eecd591f60a8.png)
+
+There is a 1 to 1 correlation between input size and execution time.
+
+The run time of an algorithm with linear time complexity will increase at the same time as the input dataset grows. 
+
+For example, if one thousand entries took one second to process, then 10 thousand would require ten time as much, that is, 10 seconds, 100,000 entries would be processed in 100 seconds and so on. As input dataset grows, so will our algorithm processing time increase, too. That is why it is called linear time.
+
+Next, we will implement some examples that will execute in linear time.
+
+Firs, I am going to show you a function which sums up the elements of an array.
+
+The next function we implement returns the number of odd and even integers from an array. Both functions will iterate through the entire array. 
+
+Therefore the computation time is directly related to the size of the array. We have linear complexity in both cases. For performance measurements, we will rely on the **BenchTimer** we built in the [previous chapter]()
+
+To illustrate the linear time complexity we will need arrays of different sizes.
+
+So let's first implement a function which generates custom-sized arrays with random content.
+
+
+```swift
+// generate random array of given size
+func generateRandomArray(size: Int, maxValue: UInt32) -> [Int] {
+    guard size > 0 else { return [Int]() }
+    var result = [Int](repeating: 0, count: size)
+    for index in 0..<size {
+        result[index] = Int.random(in: 0...Int(maxValue))
+    }
+    return result
+}
+```
+
+The **generateRandomArray(size: maxValue:)** function takes two arguments: first gives the size of the array, and maxValue which determinates the maximum allowed value for the elements.
+
+Next, we create a function which sums up the elements of the input array
+
+```swift
+func sum(array: [Int]) -> Int {
+    var result = 0
+    for index in 0..<array.count {
+        result += array[index]
+    }
+    return result
+}
+```
+
+We could use reduce() array function to calculate the sum, but implementing a custom solution makes it obvious that we iterate over the entire array.
+
+We are going to test the **sum(array:)** function with three arrays of different sizes. The first array has 100 items, the next has 1000 and the last one has 10000 elements.
+
+```swift
+let array100 = generateRandomArray(size: 100, maxValue: UInt32.max) 
+var executionTime = BenchTimer.measureBlock {
+	_ = sum(array: array100)
+}
+print("Average sum() execution time for \(array100.count) elements: \(executionTime)")
+```
+
+```console
+Average sum() execution time for 100 elements: 0.006607786300264706
+````
+
+
+```swift
+let array1000 = generateRandomArray(size: 1000, maxValue: UInt32.max)
+executionTime = BenchTimer.measuredBlock {
+	_ = sum(array: array1000)
+}
+print("Average sum() execution time for \(array1000.count) elements: \(executionTime)")
+````
+
+```console
+Average sum() execution time for 1000 elements: 0.056142487400029494
+```
+
+```swift
+let array10000 = generateRandomArray(size: 10000, maxValue: UInt32.max)
+executionTime = BenchTimer.measureBlock {
+    _ = sum(array: array10000)
+}
+print("Average sum() execution time for \(array10000.count) elements: \(executionTime)")
+```
+
+```console
+Average sum() execution time for 10000 elements: 0.7427568947002328
+```
+
+After executing our test, the performance measurement values displayed in the console prove that the execution time is linear.
+
+Here I present the three outputs:
+
+```console
+Average sum() execution time for 100 elements: 0.0030774830001064402
+Average sum() execution time for 1000 elements: 0.07036858479996226
+Average sum() execution time for 10000 elements: 0.7427568947002328
+```
+
+The **sum(array:) function iterates through all the elements of the array. Thus, it is normal that the execution time increases proportionally with the size of the array.
+
 # 	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Logarithmic Time](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
