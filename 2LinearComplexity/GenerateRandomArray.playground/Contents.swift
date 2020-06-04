@@ -16,6 +16,12 @@ public class BenchTimer {
     }
 }
 
+public extension CFTimeInterval {
+    var formattedTime: String {
+        return self >= 1000 ? String(Int(self)) + "s" : self >= 1 ? String(format: "%.3gs", self) : self >= 1e-3 ? String(format: "%.3gms", self * 1e3) : self >= 1e-6 ? String(format: "%.3gus", self * 1e6) : self < 1e-9 ? "0s" : String(format: "%.3gns", self * 1e9)
+    }
+}
+
 // generate random array of given size
 func generateRandomArray(size: Int, maxValue: UInt32) -> [Int] {
     guard size > 0 else { return [Int]() }
@@ -40,19 +46,19 @@ let array100 = generateRandomArray(size: 100, maxValue: UInt32.max)
 var executionTime = BenchTimer.measureBlock {
     _ = sum(array: array100)
 }
-print("Average sum() execution time for \(array100.count) elements: \(executionTime)")
+print("Average sum() execution time for \(array100.count) elements: \(executionTime.formattedTime)")
 
 let array1000 = generateRandomArray(size: 1000, maxValue: UInt32.max)
 executionTime = BenchTimer.measureBlock {
     _ = sum(array: array1000)
 }
-print("Average sum() execution time for \(array1000.count) elements: \(executionTime)")
+print("Average sum() execution time for \(array1000.count) elements: \(executionTime.formattedTime)")
 
 let array10000 = generateRandomArray(size: 10000, maxValue: UInt32.max)
 executionTime = BenchTimer.measureBlock {
     _ = sum(array: array10000)
 }
-print("Average sum() execution time for \(array10000.count) elements: \(executionTime)")
+print("Average sum() execution time for \(array10000.count) elements: \(executionTime.formattedTime)")
 
 // returns the number o odd and even elements from the input array
 func countOddAndEven(array: [Int]) -> (event: UInt, odd: UInt) {

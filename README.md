@@ -162,6 +162,16 @@ After ten iterations, we calculate the **average execution time**. The **reduce(
 
 Finally, we divide the result by the number of iterations, which gives us **the average execution time.**
 
+Next, we write the code extension to format the time delivered by CFTimeInterval type
+
+```swift
+public extension CFTimeInterval {
+    var formattedTime: String {
+        return self >= 1000 ? String(Int(self)) + "s" : self >= 1 ? String(format: "%.3gs", self) : self >= 1e-3 ? String(format: "%.3gms", self * 1e3) : self >= 1e-6 ? String(format: "%.3gus", self * 1e6) : self < 1e-9 ? "0s" : String(format: "%.3gns", self * 1e9)
+    }
+}
+```
+
 Next, we implement a function, which takes an array and checks whether the first element is 0.
 
 ```swift
@@ -212,7 +222,7 @@ var executionTime = BenchTimer.measureBlock {
     _ = startsWithZero(array: verySmallArray)
 }
 
-print("Average startsWithZero() execution time for array with \(verySmallArray.count) elements is \(executionTime)")
+print("Average startsWithZero() execution time for array with \(verySmallArray.count) elements is \(executionTime.formattedTime)")
 ``` 
 
 - Test a medium Array
@@ -223,7 +233,7 @@ executionTime = BenchTimer.measureBlock {
     _ = startsWithZero(array: mediumArray)
 }
 
-print("Average startsWithZero() execution time for array with \(mediumArray.count) elements is \(executionTime)")
+print("Average startsWithZero() execution time for array with \(mediumArray.count) elements is \(executionTime.formattedTime)")
 ```
 
 - Test a huge array
@@ -234,16 +244,15 @@ executionTime = BenchTimer.measureBlock {
     _ = startsWithZero(array: hugeArray)
 }
 
-print("Average startsWithZero() execution time for array with \(hugeArray.count) elements is \(executionTime)")
+print("Average startsWithZero() execution time for array with \(hugeArray.count) elements is \(executionTime.formattedTime)")
 ```
 
 - execute and see
 
 ```console
-Average startsWithZero() execution time for array with 3 elements is 0.002553028399870527
-Average startsWithZero() execution time for array with 1000 elements is 0.00010468139989825432
-Average startsWithZero() execution time for array with 1000000 elements is 0.00013025689986534417
-Our benchmark shows that the size of the input array does not affect the run time. There are only negligible differences in the order of microsecods.
+Average startsWithZero() execution time for array with 3 elements is 2.69ms
+Average startsWithZero() execution time for array with 1000 elements is 111us
+Average startsWithZero() execution time for array with 1000000 elements is 102us
 ```
 
 Another Algorithm which runs in constant time is the hash-map lookup.
@@ -254,11 +263,11 @@ let smallDictionary = ["one": 1, "two": 2, "three": 3]
 var executionTime = BenchTimer.measureBlock {
     _ = smallDictionary["two"]
 }
-print("Average lookup time in a dictionary with \(smallDictionary.count) elments: \(executionTime)")
+print("Average lookup time in a dictionary with \(smallDictionary.count) elments: \(executionTime.formattedTime)")
 ```
 
 ```console
-Average lookup time in a dictionary with 3 elments: 0.00010266969911754131
+Average lookup time in a dictionary with 3 elments: 133us
 ```
 
 - Create a method to generate dictionaries
@@ -282,7 +291,11 @@ let mediumDictionary = generatesDictionaries(size: 500)
 executionTime = BenchTimer.measureBlock {
     _ = mediumDictionary["324"]
 }
-print("Average lookup time in a dictionary with \(mediumDictionary.count) elements: \(executionTime)")
+print("Average lookup time in a dictionary with \(mediumDictionary.count) elements: \(executionTime.formattedTime)")
+```
+
+```console
+Average lookup time in a dictionary with 500 elements: 82.8us
 ```
 
 - Use it to huge sizes
@@ -292,13 +305,19 @@ let hugeDictionary = generatesDictionaries(size: 100000)
 executionTime = BenchTimer.measureBlock {
     _ = hugeDictionary["55555"]
 }
-print("Average lookup time in a dictionary with \(hugeDictionary.count) elements: \(executionTime)")
+print("Average lookup time in a dictionary with \(hugeDictionary.count) elements: \(executionTime.formattedTime)")
 ```
 
 ```console
-Average lookup time in a dictionary with 3 elments: 0.0001310078994720243
-Average lookup time in a dictionary with 500 elements: 8.133249793900177e-05
-Average lookup time in a dictionary with 100000 elements: 0.0001048646998242475
+Average lookup time in a dictionary with 100000 elements: 90.7us
+```
+
+I present here all outputs:
+
+```console
+Average lookup time in a dictionary with 3 elments: 133us
+Average lookup time in a dictionary with 500 elements: 82.8us
+Average lookup time in a dictionary with 100000 elements: 90.7us
 ```
 
 As you will see after the demo, the time it takes to find an element does not depend on the size of the dictionary.
@@ -368,12 +387,12 @@ let array100 = generateRandomArray(size: 100, maxValue: UInt32.max)
 var executionTime = BenchTimer.measureBlock {
 	_ = sum(array: array100)
 }
-print("Average sum() execution time for \(array100.count) elements: \(executionTime)")
+print("Average sum() execution time for \(array100.count) elements: \(executionTime.formattedTime)")
 ```
 
 ```console
-Average sum() execution time for 100 elements: 0.006607786300264706
-````
+Average sum() execution time for 100 elements: 3.33ms
+```
 
 
 ```swift
@@ -381,11 +400,11 @@ let array1000 = generateRandomArray(size: 1000, maxValue: UInt32.max)
 executionTime = BenchTimer.measuredBlock {
 	_ = sum(array: array1000)
 }
-print("Average sum() execution time for \(array1000.count) elements: \(executionTime)")
+print("Average sum() execution time for \(array1000.count) elements: \(executionTime.formattedTime)")
 ````
 
 ```console
-Average sum() execution time for 1000 elements: 0.056142487400029494
+Average sum() execution time for 1000 elements: 71.4ms
 ```
 
 ```swift
@@ -393,11 +412,11 @@ let array10000 = generateRandomArray(size: 10000, maxValue: UInt32.max)
 executionTime = BenchTimer.measureBlock {
     _ = sum(array: array10000)
 }
-print("Average sum() execution time for \(array10000.count) elements: \(executionTime)")
+print("Average sum() execution time for \(array10000.count) elements: \(executionTime.formattedTime)")
 ```
 
 ```console
-Average sum() execution time for 10000 elements: 0.7427568947002328
+Average sum() execution time for 10000 elements: 726ms
 ```
 
 After executing our test, the performance measurement values displayed in the console prove that the execution time is linear.
@@ -405,9 +424,9 @@ After executing our test, the performance measurement values displayed in the co
 Here I present the three outputs:
 
 ```console
-Average sum() execution time for 100 elements: 0.0030774830001064402
-Average sum() execution time for 1000 elements: 0.07036858479996226
-Average sum() execution time for 10000 elements: 0.7427568947002328
+Average sum() execution time for 100 elements: 3.33ms
+Average sum() execution time for 1000 elements: 71.4ms
+Average sum() execution time for 10000 elements: 726ms
 ```
 
 The **sum(array:)** function iterates through all the elements of the array. Thus, it is normal that the execution time increases proportionally with the size of the array.
