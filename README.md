@@ -441,7 +441,109 @@ print("number Of Odd And Even are \(numberOfOddAndEven)")
 number Of Odd And Even are (event: 2, odd: 3)
 ```
 
+The **countOddEven(array:)** function checks each item to find out whether it is odd or even.
+
+Our test confirm that **countOddEven(array:)** is indeed a function which runs in linear time - the execution time increases at the same rate as the input dataset grows.
+
 # 	* [Quadratic Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Quadratic Time represents an algorithm whose performance is directly proportional to the square of the size of the input dataset.
+
+As you can see in this chart, the runtime increases sharply, faster that the input sizes.
+
+![Screen Shot 2020-06-03 at 18 00 27](https://user-images.githubusercontent.com/24994818/83697260-2455d780-a5c4-11ea-9a90-b0a0211998a4.png)
+
+The runtime of an algorithm with quadratic time complexity will go up as a square of the input dataset size.
+
+**Quadratic, cubic and quartic time complexities are a result of nested operations on a dataset**. You should try to avoid them whenever possible, due the negative impact on the overall performance.
+
+Let's say your quadratic-time algorithm processes 100 entries in 100 milliseconds.
+
+For 2000 entries the algorithm would run for 40 seconds. And 4000 entries would be processed in slightly more than 26 minutes!
+
+![Screen Shot 2020-06-03 at 18 05 11](https://user-images.githubusercontent.com/24994818/83697507-ce356400-a5c4-11ea-8e93-95a91a58f73f.png)
+
+The runtime grows even more sharply with the input size in the case of cubic or quadratic time complexity.
+
+In the following demo, we are going to build a function that creates multiplication tables. The function will use two nested loops; because of the nested iterations, this algorithm has a quadratic time complexity.
+
+Now let's switch to Xcode.
+
+First, we implement a useful addition for our benchmarking utility:
+
+Carlos, remember that this implentation was not available for constant an linear time complexity chapters, so apply them all.
+
+```swift
+import Foundation
+import QuartzCore
+
+public extension CFTimeInterval {
+    var formattedTime: String {
+        return self >= 1000 ? String(Int(self)) + "s" : self >= 1 ? String(format: "%.3gs", self) : self >= 1e-3 ? String(format: "%.3gms", self * 1e3) : self >= 1e-6 ? String(format: "%.3gus", self * 1e6) : self < 1e-9 ? "0s" : String(format: "%.3gns", self * 1e9)
+    }
+}
+```
+
+We add **formattedTime** property to the **CFTimeInterval** type. This property provides a concise string representation of the time interval value which also includes the right unit of time, which ranges from nanoseconds to seconds.
+
+Next, we will implement a function to demonstrate the quadratic time complexity:
+
+```swift
+func multiplicationTable(size: Int) -> [Int] {
+    var table = [Int]()
+    let array = [Int](1...size)
+    for outsideIndex in 0..<array.count {
+        for insideIndex in 0..<array.count {
+            let value = array[outsideIndex]*array[insideIndex]
+            table.append(value)
+        }
+    }
+    return table
+}
+```
+
+The **multiplicationTable(size:)** function takes an integer argument which gives the size of the array which holds positive integers in the range 1..size. The function returns the result of multiplying each element in the array with every other value.
+
+We use two loops to computes the result: the outer loop iterates through the indices of the array. The internal loop takes the value found at the outer index and multiplies it with every item from the same array. The output is a multiplication table. Let's check out what we get for the input value 10.
+
+Now let's analyze how the two nested loops influence the processing time.
+
+For a two-element array, the outer loop iterates two times, and the internal loop also two times every outer iteration. This gives us four iterations in total.
+
+For a three-element array, the total iteration count is 3 times 3, that is, 9. For ten elements the function will loop 100 times.
+
+The number or iterations goes up as a square of the input data size.
+
+Let's run some performance tests to prove that our function runs at quadratic time complexity. We call the **multiplicationTable(size:)** function with arrays of different sizes, and we will display the run times in the console.
+
+```swift
+let sizes = [10, 20, 30]
+
+for index in 0..<sizes.count {
+    let size = sizes[index]
+    let executionTime = BenchTimer.measureBlock {
+        _ = multiplicationTable(size: size)
+    }
+    print("Average multiplicationTable() execution time for \(size) elements is \(executionTime.formattedTime)")
+}
+```
+
+output:
+
+```swift
+Average multiplicationTable() execution time for 10 elements is 123ms
+Average multiplicationTable() execution time for 20 elements is 764ms
+Average multiplicationTable() execution time for 30 elements is 2.14s
+```
+
+After executing the demo, we can see the quadratic jumps in execution time.
+
+---
+**Note**
+It is worth mentioning that especially for smaller input, the measurements might not always reflect the quadratic time complexity because of under the hood compiler and hardware optimizations.
+---
+
+
 # 	* [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Logarithmic Time](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
@@ -522,9 +624,6 @@ value of nodo3
  ```
 
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
-
-
-
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
