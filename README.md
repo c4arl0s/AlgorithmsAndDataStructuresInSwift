@@ -117,7 +117,7 @@ Here is what we get if we visualize the running time of an algorithm that execut
 
 The input size does not affect the execution time. In other words, the execution time remains constant.
 
-An algorithm which has a constant time complexity will run for the same amount of time whether it operates on one or on several thousand or million entries.
+An algorithm which has a **constant time complexity will run for the same amount of time whether it operates on one or on several thousand or million entries**.
 
 We will implement a utility class for measuring the performance. We will use this utility class to perform measurements in the current demo and several other upcoming project.
 
@@ -564,6 +564,24 @@ It is worth mentioning that especially for smaller input, the measurements might
 
 
 # 	* [Hints of polinomial Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Nested loops within a method of function should always be a warning sign, and you should avoid them at all costs.
+
+Whenever you encounter two or more loops that resemble **Russian nesting dolls**, ask yourself whether the nested iterations are really required to solve that particular problem.
+
+First, document the questionable code using dedicated comments (!!! or XXX) - or even better, add a **warning** if supported by the given compiler. Then implement unit tests to highlight the performance issue caused by the nested loops.
+
+Finally, try to solve the problem by replacing the nested iterations with a more efficient algorithm.
+
+Polynomial time complexity is usually the result of rushed coding, produced by developers who lack time or expertise, or maybe both.
+
+More often than not, you will find a better solution.
+
+In the chapter called "The power of Algorithms" we will see examples of replacing inefficient approaches with solutions that bring huge performance gains.
+
+There may be cases when there really is no better way to solve that problem, and you can't get rid of the nested loops. Then document the affected method thoroughly and describe why it works that way. Also, describe the performance issues it may cause with large datasets.
+
+
 # 	* [Logarithmic Time](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
