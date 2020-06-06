@@ -581,8 +581,43 @@ In the chapter called "The power of Algorithms" we will see examples of replacin
 
 There may be cases when there really is no better way to solve that problem, and you can't get rid of the nested loops. Then document the affected method thoroughly and describe why it works that way. Also, describe the performance issues it may cause with large datasets.
 
-
 # 	* [Logarithmic Time](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Logarithmic Time represents and extremely efficient algorithm, used by advance algorithms like the binary search engine.
+
+Logarithmic time means that time goes up linearly while the input data size goes up exponentially.
+
+![Screen Shot 2020-06-06 at 17 36 43](https://user-images.githubusercontent.com/24994818/83955766-519cc280-a81c-11ea-8491-389e97d4a71d.png)
+
+For example, if it takes 1 milisecond to compute 10 elements, it will take 2 miliseconds to compute 100 elements, 3 miliseconds to compute 1000 elements, and so on.
+
+**Binary search**, quick sort and divide and conquer type of algorithms run usually in logarithmic time.
+
+First, let's take a closer look at the logarithm.
+
+In mathematics, the logarithm is the inverse operation to exponentiation.
+
+The logarithm of x to base b:
+
+logb(x) = y
+
+is the unique real number y such that:
+
+b^y = x
+
+For example, log10(1000) = 3 as 10^3 = 1000
+
+And log4(16) = 2, because 4^2 = 16
+
+In other words.
+
+>The logarithm of a number is the exponent to which another fixed numbers, the base, must be raised to produced that number.
+
+logb(x) = y
+b^y = x
+
+In computer science, when measuring the performance of algorithms, the base of the logarithm is not specified, because the result only changes by a constant factor when another base is used. A constant factor is usually disregarded in the analysis of algorithms.
+
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
