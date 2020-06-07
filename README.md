@@ -619,6 +619,23 @@ b^y = x
 In computer science, when measuring the performance of algorithms, the base of the logarithm is not specified, because the result only changes by a constant factor when another base is used. A constant factor is usually disregarded in the analysis of algorithms.
 
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+We dedicated this entire chapter to the Big-O notation. 
+
+Understanding time complexity paves the road to working with algorithms.
+
+We have talked about constant time complexity - where the execution time is constant and does not depend of he input size.
+
+**Checking the first element of an array or retrieving an item from a dictionary are good examples for the constant time complexity**.
+
+Linear time complexity describes an algorithm whose runtime grows in direct proportion to the size of the input. For example, **enumerating though the elements of an array words in linear time**
+
+The execution times of quadratic time algorithms go up as a square of the input dataset size. **Quadratic time complexity is produced by a loop nested into another loop, was we have seen in our multiplication table example**.
+
+Try to avoid polynomial time complexity- like quadratic, quartic or cubic- as it can become a huge performance bottleneck.
+
+Logarithmic time describes complex algorithms like the quicksort and shows its benefits when working with large data sets.
+
 # 3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 
