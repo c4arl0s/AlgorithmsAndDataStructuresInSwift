@@ -637,6 +637,17 @@ Try to avoid polynomial time complexity- like quadratic, quartic or cubic- as it
 Logarithmic time describes complex algorithms like the quicksort and shows its benefits when working with large data sets.
 
 # 3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+In Programming, repetition can be described using loops, such as the for-loop or the while loop. Another way is to use recursion.
+
+We encounter recursion frequently while studying algorithms and data structures
+
+Thus, It is important to understand what recursion is.
+
+I am going to show you how recursion works through live coding examples.
+
+Recursion is a useful technique, yet it does not come without pitfalls (problemas, trampas). We will finish this chapter by demonstrating how to avoid common issues when using recursion in Swift Projects.
+
 # 	* [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 
 Is a way to solve a reocurring problem repeatedly solving similar subproblems
