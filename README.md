@@ -650,59 +650,99 @@ Recursion is a useful technique, yet it does not come without pitfalls (problema
 
 # 	* [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 
-Is a way to solve a reocurring problem repeatedly solving similar subproblems
+By definition, recursion is a way to solve a reoccurring problem by repeatedly solving similar subproblems.
 
-# 	* [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+In programming, we can have recursive functions. A function is recursive if it calls itself. The call can happen directly like in this case:
 
 ```swift
-// a function calls itself
 func r() {
-    r()
+	//...
+	r()
+	//...
 }
 ```
 
-or indirectly
+Or indirectly, if the function calls another function, which in turn invokes the first one:
 
 ```swift
-// a function call it from another function
 func r() {
-    g()
+	//...
+	g()
+	//...
 }
 
 func g() {
-    r()
+	//...
+	r()
+	//...
 }
 ```
 
-### A linked list can be described as a list node followed by a linked list.
+We will often encounter recursive data structures, too. A **data structure** is recursive if you can describe it in terms of itself.
+
+A **linked list** can be described as a **list node** followed by a **linked list**.
+![Screen Shot 2020-06-08 at 19 16 55](https://user-images.githubusercontent.com/24994818/84092359-babb3c00-a9bc-11ea-8c39-d4c473e2f1ad.png)
+
+Here is a simple Node class:
 
 ```swift
 class Node {
-    var next: Node?
     var value: String
+    var next: Node?
     
     init(value: String) {
         self.value = value
     }
 }
+```
 
+Each node can link to the next node through the next property.
+
+![Screen Shot 2020-06-08 at 19 26 23](https://user-images.githubusercontent.com/24994818/84092753-f571a400-a9bd-11ea-8c28-20f1f56323bf.png)
+
+The Node also holds a value of type string. I provide an initializer which sets the value property. 
+
+Now that we have our Node type, let's build a linked list
+
+
+- Create the nodes
+
+```swift
 let node1 = Node(value: "value of nodo1")
 let node2 = Node(value: "value of nodo2")
 let node3 = Node(value: "value of nodo3")
+```
+- Set the next property of each node.
 
+```swift
 node1.next = node2
 node2.next = node3
 node3.next = nil
+```
 
+First, I create each node using a value that matches its name. Then, I assign the next property of each node to form a singly linked list. I end the linked list after three nodes by setting the next property to nil.
+
+Let's implement a function that traverses the linked list and prints the value in each node.
+
+```swift
 func parseNodes(from node: Node?) {
     guard let validNode = node else { return }
     print(validNode.value)
     parseNodes(from: validNode.next)
 }
-
-parseNodes(from: node1)
 ```
 
+The parseNodes(from:) function takes an argument of type Node. This is the node where we start the list traversal.
+
+If the node is nil, we exit the function. Else, we print the value of the given  node.
+
+The function calls the parseNodes(from:) method recursively by passing in the next node.
+
+Finally, we call the parseNodes(from:) function with the first node as input parameter.
+
+```swift
+parseNodes(from: node1)
+```
 
 ```console
 value of nodo1
@@ -710,19 +750,33 @@ value of nodo2
 value of nodo3
 ```
 
-### Recursion won't necessarily produce faster or more efficient code.
-### It usually provides an elegant alternative to iterate approaches and requires fewer lines of code.
+Now from node2
 
-# How does recursion work ? 
+```swift
+parseNodes(from: node2)
+```
 
- n! = 1 x 2 x 3 x ... x n
- 
- ```swift
- func factorial(number: UInt64) -> UInt64 {
-    return number < 2 ? 1 : number * factorial(number: n-1)
- }
- ```
+```console
+value of nodo2
+value of nodo3
+```
 
+Now from node3
+
+```swift
+parseNodes(from: node3)
+```
+
+```console
+value of nodo3
+```
+
+If we run the demo, it prints the expected values. Since the data structure is **recursive**, we can use recursion to iterate through it.
+
+> Recursion will not necessarily produce faster or more efficient code. But it usually provides an elegant alternative to iterate approaches and requires fewer lines of code.
+
+
+# 	* [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)

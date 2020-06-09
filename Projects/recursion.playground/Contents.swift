@@ -24,3 +24,5 @@ func parseNodes(from node: Node?) {
 }
 
 parseNodes(from: node1)
+parseNodes(from: node2)
+parseNodes(from: node3)
