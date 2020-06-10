@@ -775,8 +775,39 @@ If we run the demo, it prints the expected values. Since the data structure is *
 
 > Recursion will not necessarily produce faster or more efficient code. But it usually provides an elegant alternative to iterate approaches and requires fewer lines of code.
 
-
 # 	* [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+So far, we have seen some examples of recursive functions and data structures. Now, let's check out how recursion works.
+
+We are going to calculate the factorial of a positive integer n. This is a problem that can be solved using recursion, since the factorial is defined as the product of the integers from 1 to n.
+
+n! = 1 x 2 x 3 ... x n
+
+So, here's the swift factorial function that calculates the factorial of a positive integer:
+
+```swift
+func factorial(number: UInt64) -> UInt64 {
+   return number < 2 ? 1 : number * factorial(number: number-1)
+}
+
+let factorialNumber = factorial(number: 20)
+print(factorialNumber)
+```
+
+The function takes an unsigned integer as argument. If the input parameter is 1 or 0, the function returns 1. Otherwise, the function returns the product of the input and the result of calling the function with and argument that is smaller by one.
+
+The recursive calls continue until the function gets called with a value that is smaller than 2.
+
+To understand how recursion works, here is a graphical representation of what is going on when calculating factorial of 3.
+
+![Screen Shot 2020-06-10 at 17 14 54](https://user-images.githubusercontent.com/24994818/84324253-fa5d6180-ab3d-11ea-83b9-ae63ca236893.png)
+
+Whenever a nested call happens, the execution of the former call is suspender and its stat is stored. A snapshot of its content, that is, its code, input parameters and local variables is persisted.
+
+All this information is stored in a structure known as "call stack" or "execution stack" The call stack is a stack structure that keeps track of the point where control should be returned after the subroutine finishes its execution. When the nested call is finished executing, its context is destroyed, and the control is returned to the caller.
+
+Eventually, we get back to the very first function call. All the nested contexts are destroyed by then and the result is returned to the caller.
+
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
