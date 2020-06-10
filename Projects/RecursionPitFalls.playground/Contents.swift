@@ -5,4 +5,7 @@ func badSum(number: Int) -> Int {
     return number + badSum(number: (number-1))
 }
 
-badSum(number: 3)
+let result = badSum(number: 3)
+print(result)
+
+

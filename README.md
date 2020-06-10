@@ -22,6 +22,7 @@
 # 3. [Recursion](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#3-recursion-1)
  * [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-what-is-recursion)
  * [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-how-does-recursion-work)
+ * [Recursion Pitfalls]()
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#4-the-power-of-algorithms)
  * [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-calculate-sumn)
  * [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-pair-matching-challenge)
@@ -804,9 +805,94 @@ To understand how recursion works, here is a graphical representation of what is
 
 Whenever a nested call happens, the execution of the former call is suspender and its stat is stored. A snapshot of its content, that is, its code, input parameters and local variables is persisted.
 
-All this information is stored in a structure known as "call stack" or "execution stack" The call stack is a stack structure that keeps track of the point where control should be returned after the subroutine finishes its execution. When the nested call is finished executing, its context is destroyed, and the control is returned to the caller.
+All this information is stored in a structure known as **"call stack"** or **"execution stack"** **The call stack is a stack structure that keeps track of the point where control should be returned after the subroutine finishes its execution**. When the nested call is finished executing, its context is destroyed, and the control is returned to the caller.
 
 Eventually, we get back to the very first function call. All the nested contexts are destroyed by then and the result is returned to the caller.
+
+#   * [Recursion Pitfalls]()
+
+Recursion is great, but it does not come without pitfalls
+
+The biggest problem is infinite recursion. I am going to illustrate it using a function which calculates the sum of the first n positive numbers.
+
+> I call the function badSum(), to make it clear that is not the right approach to solve this problem. Calculate Sum(n) shows the proper solution that relies on a simple formula.
+
+```swift
+func badSum(number: Int) -> Int {
+    return number + badSum(number: (number-1))
+}
+```
+
+So badSum(number: Int) accepts an input parameter number, of type int, and returns an integer. We use a recursive approach. The function returns the sum of the input parameter and the result of calling itself with an argument that is smaller by one.
+
+We can test this function in an Xcode playground like this:
+
+```swift
+let result = badSum(number: 3)
+print(result)
+```
+
+Eventually our demo is going to crash.
+
+To understand the root cause, let's quick recap how recursion works.
+
+Each time a nested call occurs, a record of the current context is made and added as a new stack frame to the top of the stack.
+
+![Screen Shot 2020-06-10 at 18 42 50](https://user-images.githubusercontent.com/24994818/84329386-35659200-ab4a-11ea-8ccb-8b71cad73e8c.png)
+
+And each time a call returns, the top stack frame is removed.
+
+![Screen Shot 2020-06-10 at 18 43 38](https://user-images.githubusercontent.com/24994818/84329449-50380680-ab4a-11ea-8c77-89d2c20f95b6.png)
+
+The stack is a special part of the memory used for fast, static allocation. Each application has a stack (and multithreaded applications have one stack per thread).
+
+The stack has a finite size. Thus, if we keep calling nested functions and none of these functions returns, we will run out of available stack space.
+
+When the memory available for the call stack is exceeded, the app will crash with a stack overflow error.
+
+![Screen Shot 2020-06-10 at 18 47 06](https://user-images.githubusercontent.com/24994818/84329628-cdfc1200-ab4a-11ea-8034-d6a355f038de.png)
+
+Let's inspect our badSum(number:) function:
+
+```switf
+func badSum(number: Int) -> Int {
+    return number + badSum(number: (number-1))
+}
+```
+
+There's no condition that prevents executing the nested call over and over again.
+
+To see what is going on, we print the value of the input argument. So, whenever we call the function, the value of number will appear in the console.
+
+```swift
+func badSum(number: Int) -> Int {
+    print(number)
+    return number + badSum(number: (number-1))
+}
+```
+
+If we run the demo after this change, negative values will start filling the console. Now, we have the proof that the execution does not stop after two recursive calls as it should.
+
+That means that the nested context are not destroyed. Hence, the stack frames are not removed. Thus, we keep allocating memory on the stack without deallocating it, which eventually leads to the stack overflow exception.
+
+```console
+3
+2
+1
+0
+-1
+-2
+-3
+.
+.
+.
+-54224
+-54225
+-54226
+-54227
+```
+
+> Uncontrolled recursion leads to stack overflow!
 
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
