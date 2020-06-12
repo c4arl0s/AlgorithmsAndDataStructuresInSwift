@@ -23,6 +23,7 @@
  * [What is recursion?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-what-is-recursion)
  * [How Does Recursion Work?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-how-does-recursion-work)
  * [Recursion Pitfalls]()
+ * [How to Avoid Infinite Recursion]()
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#4-the-power-of-algorithms)
  * [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-calculate-sumn)
  * [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#-pair-matching-challenge)
@@ -869,6 +870,8 @@ func badSum(number: Int) -> Int {
     print(number)
     return number + badSum(number: (number-1))
 }
+let result = badSum(number: 3)
+print(result)
 ```
 
 If we run the demo after this change, negative values will start filling the console. Now, we have the proof that the execution does not stop after two recursive calls as it should.
@@ -893,6 +896,133 @@ That means that the nested context are not destroyed. Hence, the stack frames ar
 ```
 
 > Uncontrolled recursion leads to stack overflow!
+
+#   * [How to Avoid Infinite Recursion]()
+
+To avoid infinite recursion, each recursive function needs **to have at least one condition that prevents further nested calls to itself**. This condition is called **base case**.
+
+The issue is that badSum(number:) calls itself as we keep decreasing the input argument number.
+
+```swift
+func badSum(number: Int) -> Int {
+	return number + badSum(number: (number-1))
+}
+```
+
+We need a **base case** here - that is, a condition which makes the function return without performing another recursive call.
+
+Let's fix the badSum(number:) function and add the missing base case. We are only interested in the sum of positive integers. So, if the input argument is zero, we can simply return zero.
+
+```swift
+func badSum(number: Int) -> Int {
+
+	if n==0 {
+		return 0
+	}
+	return number + badSum(number: (number-1))
+}
+let result = badSum(number: 3)
+print(result)
+```
+
+If I run the function after this change, it produces the expected result. 
+
+```console
+6
+```
+
+But does this check really work for all input values ?
+Will it work for negative  values ? Let's check it with -1.
+
+```switf
+func badSum(number: Int) -> Int {
+
+    if number==0 {
+        return 0
+    }
+    return number + badSum(number: (number-1))
+}
+let result = badSum(number: -1)
+print(result)
+```
+
+![Screen Shot 2020-06-12 at 0 34 45](https://user-images.githubusercontent.com/24994818/84468480-8a85ce80-ac44-11ea-8455-17aa6eed6311.png)
+
+```console
+ 10> func badSum(number: Int) -> Int { 
+ 11.  
+ 12.     if number==0 { 
+ 13.         return 0 
+ 14.     } 
+ 15.     return number + badSum(number: (number-1)) 
+ 16. } 
+ 17. let result = badSum(number: -1) 
+ 18. print(result) 
+result: Int = <extracting data from value failed>
+
+Execution interrupted. Enter code to recover and continue.
+Enter LLDB commands to investigate (type :help for assistance.)
+```
+
+Nope ! Since I only check for zero, the function will cause a runtime crash for negative input.
+
+We must ensure that the function actually **progress towards the base case**
+
+For that, we need to modify the base case so that it covers not only the value zero, but also negative values.
+
+```swift
+ 37> func badSum(number: Int) -> Int { 
+ 38.  
+ 39.     if number<=0 { 
+ 40.         return 0 
+ 41.     } 
+ 42.     return number + badSum(number: (number-1)) 
+ 43. } 
+ 44. let result = badSum(number: -1)
+ 45. print(result) 
+0
+result: Int = 0
+```
+
+actually, the **guard** statement is an even better choice, since it forces us to exit the function.
+
+
+```console
+ 46> func badSum(number: Int) -> Int { 
+ 47.  
+ 48.     guard number > 0 else { return 0 }
+ 49.     return number + badSum(number: (number-1)) 
+ 50. } 
+ 51. let result = badSum(number: -1) 
+ 52. print(result) 
+0
+result: Int = 0
+ 53> func badSum(number: Int) -> Int { 
+ 54.  
+ 55.     guard number > 0 else { return 0 } 
+ 56.     return number + badSum(number: (number-1)) 
+ 57. } 
+ 58. let result = badSum(number: 4)
+ 59. print(result) 
+10
+result: Int = 10
+ 60> func badSum(number: Int) -> Int { 
+ 61.  
+ 62.     guard number > 0 else { return 0 } 
+ 63.     return number + badSum(number: (number-1)) 
+ 64. } 
+ 65. let result = badSum(number: 3)
+ 66. print(result) 
+6
+result: Int = 6
+```
+
+Remember these rules when you implement recursive solutions:
+
+1. Each recursive function needs to have at least **one condition that prevents further nested calls to itself**
+2. Ensure that the function actually **progresses towards the base case**
+3. Also, check your recursive function thoroyughly through unit tests that cover also edge cases.
+
 
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
