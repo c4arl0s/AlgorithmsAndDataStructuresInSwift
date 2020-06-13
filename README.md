@@ -1023,8 +1023,24 @@ Remember these rules when you implement recursive solutions:
 2. Ensure that the function actually **progresses towards the base case**
 3. Also, check your recursive function thoroyughly through unit tests that cover also edge cases.
 
-
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+In this chapter we are going take a closer look at the importance and the benefits of algorithms and algorithmic thinking.
+
+We have already talked about Big-O Notation. We saw that our choice of implementing a problem can make a huge difference when it comes to the performance and the scalability of our solution.
+
+Algorithmic thinking is the ability to approach a problem and find the most efficient technique to solve it.
+
+To demonstrate the power of algorithms, we are going to solve the following problems: 
+
+- We will calculate the sum of the first N natural numbers.
+- Then, we are going to implement a function that, given an array and a value, returns the indices of any two distinct elements whose sum is equal to the target value.
+- Finally, we are going to calculate the equilibrium index of an array. The equilibrium o balance index represents the index which splits the array such that the sum of the elements at lower indices is equal to the sum of items at higher indices.
+
+We are going to use brute-force approach first. Then we will implement a solution with efficiency in mind.
+
+You will see how some basic math and the knowledge of Swift language features and data structures can help us in implementing a cleaner and better performing solution.
+
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
