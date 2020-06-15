@@ -1021,7 +1021,7 @@ Remember these rules when you implement recursive solutions:
 
 1. Each recursive function needs to have at least **one condition that prevents further nested calls to itself**
 2. Ensure that the function actually **progresses towards the base case**
-3. Also, check your recursive function thoroyughly through unit tests that cover also edge cases.
+3. Also, check your recursive function thoroughly through unit tests that cover also edge cases.
 
 # 4. [The Power of Algorithms](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 
@@ -1042,6 +1042,121 @@ We are going to use brute-force approach first. Then we will implement a solutio
 You will see how some basic math and the knowledge of Swift language features and data structures can help us in implementing a cleaner and better performing solution.
 
 # 	* [Calculate Sum(n)](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Our first task is to implement a function which calculates the sum of the first N natural numbers.
+
+We will start with a naive implementation. Then, we are going to implement a more efficient way to solve this problem using a formula that is more than 2000 years old.
+
+All right, so let's switch to our XCode Playground project.
+
+```swift
+func sum(_ number: UInt) -> UInt {
+    var result: UInt = 0
+    for index in 1...number {
+        result += index
+    }
+    return result
+}
+```
+
+I define a function called sum() which takes a single argument; this argument represents the number of natural numbers whose sum we want to calculate. The function returns an unsigned integer which gives the sum. 
+
+The logic is very simple: we sum up all the numbers starting with one up to the value of the input parameter number:
+
+```switf
+    for index in 1...number {
+        result += index
+    }
+```
+
+Because of this loop, or function has a linear time complexity - O(n)
+
+We can confirm 	that linear time complexity by calling the sum() function with steadly increasing values of the step constant (e.g. 100, 1000, 10000) 
+
+```swift
+let step = 100
+var executionTime: Double
+
+for index in 1...10 {
+    executionTime = BenchTimer.measureBlock {
+        _ = sum(UInt(index*step))
+    }
+    print("Average sum(n) execution time fo \(index*step) elements: \(executionTime.formattedTime)")
+}
+```
+
+```console
+Average sum(n) execution time fo 100 elements: 13.1ms
+Average sum(n) execution time fo 200 elements: 7.33ms
+Average sum(n) execution time fo 300 elements: 18.1ms
+Average sum(n) execution time fo 400 elements: 18.6ms
+Average sum(n) execution time fo 500 elements: 42.2ms
+Average sum(n) execution time fo 600 elements: 45.4ms
+Average sum(n) execution time fo 700 elements: 40.3ms
+Average sum(n) execution time fo 800 elements: 50ms
+Average sum(n) execution time fo 900 elements: 56.8ms
+Average sum(n) execution time fo 1000 elements: 89.6ms
+```
+
+The console log shows that the execution time increases linearly with the input.
+
+Although this function does the job, there is a better way to compute the sum of the first N natural numbers.
+
+We are going to rely on a simple formula:
+
+![Screen Shot 2020-06-15 at 8 27 07](https://user-images.githubusercontent.com/24994818/84662922-110b0c00-aee2-11ea-9b64-39562d377684.png)
+
+Carl Friedrich Gauss is said to have found this relationship in his early youth.
+
+However, he was not the first to discover this formula. It is likely that its origin goes back to the Pythagoreans and it was known as early as the sixth century BC.
+
+We can now implement an improved version of the sum() function
+
+```swift
+func sumOptimized(_ number: UInt) -> UInt{
+    return number * (number + 1) / 2
+}
+```
+
+sumOptimezed() does not rely on loops. Instead it uses triangle numbers formula.
+
+The new function is not only cleaner, but it also **operates in constant time**; that is, its execution time does not depend on the input.
+
+You can check this by running the same performance test as we did for the sum() function. The result will prove that execution times do not vary regardless of the input size.
+
+There will be only some minor, negligible difference in the range of micro seconds (um).
+
+The sumOptimezed is more efficient even for smaller values, and the difference just grows with the input. This chart visualizes the running tomes of the two functions.
+
+![Screen Shot 2020-06-15 at 8 38 04](https://user-images.githubusercontent.com/24994818/84664062-9b07a480-aee3-11ea-8d14-1e2bb1f91b69.png)
+
+The optimized, sumOptimized() function does not depend on the input size, unlike the sum() function which runs in linear time.
+
+By applying this clever formula, we managed to implement a solution with an optimal performance.
+
+```swift
+for index in 1...10 {
+    executionTime = BenchTimer.measureBlock {
+        _ = sumOptimized(UInt(index*step))
+    }
+    print("Average sum(n) execution time fo \(index*step) elements: \(executionTime.formattedTime)")
+}
+```
+
+```console
+Average sum(n) execution time fo 100 elements: 100us
+Average sum(n) execution time fo 200 elements: 107us
+Average sum(n) execution time fo 300 elements: 90.8us
+Average sum(n) execution time fo 400 elements: 96.8us
+Average sum(n) execution time fo 500 elements: 98.5us
+Average sum(n) execution time fo 600 elements: 90.8us
+Average sum(n) execution time fo 700 elements: 106us
+Average sum(n) execution time fo 800 elements: 96.3us
+Average sum(n) execution time fo 900 elements: 97.7us
+Average sum(n) execution time fo 1000 elements: 100us
+```
+
+
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
