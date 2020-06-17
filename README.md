@@ -1155,9 +1155,144 @@ Average sum(n) execution time fo 800 elements: 96.3us
 Average sum(n) execution time fo 900 elements: 97.7us
 Average sum(n) execution time fo 1000 elements: 100us
 ```
-
-
 # 	* [Pair Matching Challenge](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+Here is the next challenge. Our task is to write a function that given an array and a target value, returns zero-based indices of any two distinct elements whose sum is equal to the target sum. If there are no such elements, the function should return nil.
+
+For example, for the array of numbers 1,2,2,3,4, and the target value 4, our function should return the tuple of indices (1,2) or (0,3).
+
+![Screen Shot 2020-06-17 at 11 05 47](https://user-images.githubusercontent.com/24994818/84921861-a1845080-b08a-11ea-8362-7d2a08048a96.png)
+
+First, we are going to implement a solution which relies on nested iterations. Because of the nested iterations, this algorithm has a quadratic time complexity.
+
+Then, we are going to come up with an algorithm which operates in linear time rather than quadratic time.
+
+All right, time to do some coding !
+
+Here is the first attempt to solve this problem:
+
+> At this stage of the lecture, the book suggest me only return a tuple when it finds it. To improve the code I return and array of tuples to find all solutions.
+
+```switf
+func findTwoSum(_ array: [Int], target: Int) -> [(Int, Int)]? {
+    guard array.count > 1 else { return nil }
+    var tupleArray = [(Int, Int)]()
+    for leftIndex in 0..<array.count {
+        
+        let left = array[leftIndex]
+        for rightIndex in (leftIndex+1)..<array.count {
+            let right = array[rightIndex]
+            if left+right == target {
+                tupleArray.append((leftIndex, rightIndex))
+            }
+        }
+    }
+    return tupleArray
+}
+```
+
+Then do the test:
+
+```swift
+let test = [1, 2, 2, 3, 4]
+let result = findTwoSum(test, target: 4)
+print(result)
+```
+
+Then Console throws what we are looking for.
+
+```console
+Optional([(0, 3), (1, 2)])
+```
+
+Because of the nested iterations, this algorithm has a quadratic time complexity.
+
+Then, we are going to come up with an algorithmic which operates in **linear time rather than quadratic time complexity.**
+
+To be precise, this function has a worst time complexity of 
+
+(n^2+n) / 2
+
+where n is the size of the input array.
+
+Let's go through the steps of finding this formula.
+
+The outer loop iterates through the entire array, which gives n iterations.
+
+The inner loop iterates (n-1) times first, then (n-2) times, and so on.
+
+| outer loops | Inner loops             |
+| ----------- | ----------------------- |
+| n           | (n-1) + (n-2) + ... + 1 |
+
+When the outer loop reaches the penultime index, the inner loop only iterates once. To find out the total iteration performed in the inner loop, we have to calculate the sum of the first (n-1) numbers
+
+We can use the formula we learned in the previous lecture to calculate the inner loop count, that is:
+
+![Screen Shot 2020-06-17 at 11 58 21](https://user-images.githubusercontent.com/24994818/84927051-e8297900-b091-11ea-819f-d4eabba50827.png)
+
+Now, to get the total number of iterations, we must add the count of the outer loops, too:
+
+![Screen Shot 2020-06-17 at 11 59 45](https://user-images.githubusercontent.com/24994818/84927153-0ee7af80-b092-11ea-90bf-588d69fd78d9.png)
+
+So, our function has a time complexity of 
+
+![Screen Shot 2020-06-17 at 12 00 33](https://user-images.githubusercontent.com/24994818/84927248-29ba2400-b092-11ea-9857-a44ff1de0c3c.png)
+
+Now, let's implement a solution which does not rely on nested loops
+
+We are going to avoid **scanning** the array twice to find numbers which add up to the target value.
+
+```swift
+func findTwoSumOptimized(_ array: [Int], target: Int) -> [(Int, Int)]? {
+    guard array.count > 1 else { return nil }
+    var tupleArray = [(Int, Int)]()
+    var diffs = Dictionary<Int,Int>()
+    for leftIndex in 0..<array.count {
+        let left = array[leftIndex]
+        let right = target-left
+        if let foundIndex = diffs[right] {
+            tupleArray.append((leftIndex, foundIndex))
+        } else {
+            diffs[left] = leftIndex
+        }
+    }
+return tupleArray
+}
+```
+
+This function uses a single loop to iterate through the array. For each number, we check whether the difference between the target value and the given number can be found in the dictionary called **diffs**.
+
+```swift
+let test = [1, 2, 2, 3, 4]
+let optimizedResult = findTwoSumOptimized(test, target: 4)
+print(optimizedResult)
+```
+
+If the difference is found, we have got our two numbers, and we return the tuple with the index, in this case I rewrite the code to return an array of tuples. Else, we store the current index (the difference being the key) and we iterate further.
+
+```console
+Optional([(2, 1), (3, 0)])
+```
+
+> Note that both dictionary insertion and search happen in constant time. Therefore, these operations won't affect the time complexity of our function.
+
+We managed to reduce the time complexity to O(n) - linear time - because we only iterate once through the array.
+
+If we compare the performance of the two functions, we will see noticeable differences as the size of the input array increases.
+
+The benefits of the linear complexity over quadratic time complexity become even more evident if we increase the input size.
+
+> When I execute the code I found that the order of the returned tuple was wrong, I have to change the order in this line
+
+```
+tupleArray.append((foundIndex, leftIndex))
+```
+
+```console
+Optional([(1, 2), (0, 3)])
+```
+
 # 	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 5. [Generics](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
