@@ -22,24 +22,17 @@ public extension CFTimeInterval {
     }
 }
 
-func equilibrium(_ numbers: [Int]) -> [Int]? {
-    guard numbers.count > 0 else { return nil }
+func equilibriumOptimized(_ numbers: [Int]) -> [Int]? {
     var indices = [Int]()
-    var left = 0
-    var right = 0
+    var leftSum = 0
+    var sum = numbers.reduce(0, +)
     let count = numbers.count
     for index in 0..<count {
-        left = 0
-        right = 0
-        for j in 0..<index {
-            left = left + numbers[j]
-        }
-        for j in index+1..<count {
-            right = right + numbers[j]
-        }
-        if left == right {
+        sum = sum - numbers[index]
+        if leftSum == sum {
             indices.append(index)
         }
+        leftSum = leftSum + numbers[index]
     }
     return indices.isEmpty ? nil : indices
 }
@@ -47,7 +40,8 @@ func equilibrium(_ numbers: [Int]) -> [Int]? {
 let testedArray = [-3, 2, -2, 1, -2, 2, 1, 3, 2, 1, 2, 3, 1, 3, 2, 5, 2, 6, 0, 1, 5, -3, 2, -2, 1, -2, 2, 1, 3, 2, 1, 2, 3, 1, 3, 2, 5, 2, 6, 0, 1, 5]
 
 var executionTime = BenchTimer.measureBlock {
-    _ = equilibrium(testedArray)
+    _ = equilibriumOptimized(testedArray)
 }
 
-print("Average equilibrium() execution time for array with \(testedArray.count) elements is \(executionTime.formattedTime)")
+print("Average equilibriumOptimized() execution time for array with \(testedArray.count) elements is \(executionTime.formattedTime)")
+

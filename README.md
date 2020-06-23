@@ -1299,7 +1299,7 @@ We are going to implement a function that given an array returns the equilibrium
 
 First, we will come up with a brute-force solution. Then, we will come up with an algorithmic that executes in linear time by applying some basic math.
 
-```switf
+```swift
 func equilibrium(_ numbers: [Int]) -> [Int]? {
     guard numbers.count > 0 else { return nil }
     var indices = [Int]()
@@ -1323,6 +1323,15 @@ func equilibrium(_ numbers: [Int]) -> [Int]? {
 }
 ```
 
+```swift
+let testedArray = [-3, 2, -2, 1, -2]
+equilibriumOptimized(testedArray)
+```
+
+```console
+[1, 2]
+```
+
 The **equilibrium()** function uses three loops. The outer loop iterates through all elements of the array.
 
 We nee two inner loops to find out whether the current index picked by the outer loop is an equilibrium index or not.
@@ -1338,6 +1347,80 @@ The worst time complexity of this solution is **quadratic**.
 Updating the left and right sums using two inner loop is a simple but also a very inefficient approach.
 
 Here is a solution that does not require nested loops.
+
+```swift
+func equilibriumOptimized(_ numbers: [Int]) -> [Int]? {
+    var indices = [Int]()
+    var leftSum = 0
+    var sum = numbers.reduce(0, +)
+    let count = numbers.count
+    for index in 0..<count {
+        sum = sum - numbers[index]
+        if leftSum == sum {
+            indices.append(index)
+        }
+        leftSum = leftSum + numbers[index]
+    }
+    return indices.isEmpty ? nil : indices
+}
+```
+
+```swift
+let testedArray = [-3, 2, -2, 1, -2]
+equilibriumOptimized(testedArray)
+```
+
+```console
+[1, 2]
+```
+
+The idea is to get the total sum of the array first.
+
+We use the **reduce(0, +)** array function to calculate the sum of all elements in the array. 
+
+Then, we iterate through the entire array. The **leftSum variable is originally initialized to zero. We keep updating **leftSum** by adding the elements as we iterate through the array. 
+
+We can get the sum of the elemenst of the right subarray by substracting the elements one by one from the total sum.
+
+With this algorithm, we only need to loop once through the array. This function has a linear time complexity, O(2n) because of the **reduce()** function loop.
+
+Let's run our performance tests. For 5 items, the optimized variant performs about 2x better, and over over 20x times better for 50 items.
+
+For an array of 200 items, the **equilibriumOptimized()** function runs about 1000x faster than the function which uses nested loops.
+
+The difference grows quickly with the input size. For bigger arrays, finding the equilibrium indices with the optimized variant only takes a fraction of the running time of the  brute-force apprach.
+
+As we expected, the function with quadratic time complexity is more sensitive to input data sizes than the function with linear time complexity.
+
+This is another good example which demostrates the importance of finding the right algorithm.
+
+Let's measure by ourself the execution time for the actual number of elements of original array.
+
+```console
+let testedArray = [-3, 2, -2, 1, -2, 2, 1, 3, 2, 1, 2, 3, 1, 3, 2, 5, 2, 6, 0, 1, 5]
+
+var executionTime = BenchTimer.measureBlock {
+    _ = equilibrium(testedArray)
+}
+```
+
+```console
+Average equilibrium() execution time for array with 21 elements is 19.1ms
+```
+
+```swift
+let testedArray = [-3, 2, -2, 1, -2, 2, 1, 3, 2, 1, 2, 3, 1, 3, 2, 5, 2, 6, 0, 1, 5]
+
+var executionTime = BenchTimer.measureBlock {
+    _ = equilibriumOptimized(testedArray)
+}
+
+print("Average equilibriumOptimized() execution time for array with \(testedArray.count) elements is \(executionTime.formattedTime)")
+```
+
+```console
+Average equilibriumOptimized() execution time for array with 21 elements is 8.08ms
+```
 
 
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
