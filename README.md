@@ -1297,7 +1297,7 @@ that is:
 
 We are going to implement a function that given an array returns the equilibrium indices or nil if the array has no equilibrium index.
 
-First, we will come up with a brute-force solution. Then, we will come up with an algorithmic that executes in linear time by applying some basic math.
+First, we will come up with a **brute-force solution**. Then, we will come up with an algorithmic that executes in linear time by applying some basic math.
 
 ```swift
 func equilibrium(_ numbers: [Int]) -> [Int]? {
@@ -1378,11 +1378,11 @@ The idea is to get the total sum of the array first.
 
 We use the **reduce(0, +)** array function to calculate the sum of all elements in the array. 
 
-Then, we iterate through the entire array. The **leftSum variable is originally initialized to zero. We keep updating **leftSum** by adding the elements as we iterate through the array. 
+Then, we iterate through the entire array. The **leftSum** variable is originally initialized to zero. We keep updating **leftSum** by adding the elements as we iterate through the array. 
 
 We can get the sum of the elemenst of the right subarray by substracting the elements one by one from the total sum.
 
-With this algorithm, we only need to loop once through the array. This function has a linear time complexity, O(2n) because of the **reduce()** function loop.
+With this algorithm, we only need to loop once through the array. This function has a linear time complexity, **O(2n)** because of the **reduce()** function loop.
 
 Let's run our performance tests. For 5 items, the optimized variant performs about 2x better, and over over 20x times better for 50 items.
 
@@ -1396,13 +1396,14 @@ This is another good example which demostrates the importance of finding the rig
 
 Let's measure by ourself the execution time for the actual number of elements of original array.
 
-```console
+```swift
 let testedArray = [-3, 2, -2, 1, -2, 2, 1, 3, 2, 1, 2, 3, 1, 3, 2, 5, 2, 6, 0, 1, 5]
 
 var executionTime = BenchTimer.measureBlock {
     _ = equilibrium(testedArray)
 }
 ```
+
 
 ```console
 Average equilibrium() execution time for array with 21 elements is 19.1ms
@@ -1418,12 +1419,35 @@ var executionTime = BenchTimer.measureBlock {
 print("Average equilibriumOptimized() execution time for array with \(testedArray.count) elements is \(executionTime.formattedTime)")
 ```
 
+
 ```console
 Average equilibriumOptimized() execution time for array with 21 elements is 8.08ms
 ```
 
 
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+In this section, we have seen some practical examples of solving problems using two different approaches.
+
+Although the naive implementations produced the right results, they start to show their weakness as the input size gets bigger.
+
+By using more efficient techniques, we reduced the time complexity and - as a consequence - the execution time of our solutions considerably.
+
+Coming up with the optimal algorithm requires research and deeper understanding of the problem we are trying to solve.
+
+Math skills and the ability to apply the features of the given programming language will help you in creating more efficient algorithms.
+
+The time complexity of an algorithm is crucial when it comes to performance.
+
+> Do your best to avoid polynomial and worse time complexities!
+
+Nested loops should always be a warning sign. Whenever you meet them, think about other alternatives to solve that particular problem.
+
+You should highlight the performance bottlenecks using dedicated comments. Implement unit and performance tests. They will surface the issues which otherwise would remain hidden.
+
+Finally, try to solve the problem without relying on nested iterations if possible.
+
+
 # 5. [Generics](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Why Generics?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Generic Types](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
