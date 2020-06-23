@@ -91,13 +91,13 @@ The best way to understand the Big-O notation thoroughly (a fondo) is through co
 
 Here are the common orders of growth - or complexities - we are going to talk about this chapter:
 
-**Constant Time**: Describes an algorithm that will always execute in the same amount of time, regardless of the input size.
+- **Constant Time**: Describes an algorithm that will always execute in the same amount of time, regardless of the input size.
 
-**Linear Time**: Describes a algorithm whose performance will grow linearly and in direct proportion to the size of the input data set.
+- **Linear Time**: Describes a algorithm whose performance will grow linearly and in direct proportion to the size of the input data set.
 
-**Quadratic Time**: Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This behavior is typical with algorithms that involve nested iterations over the data set. Deeper nested iterations will result in O(N3) (cubic time), O(N4) quartic time and worse.
+- **Quadratic Time**: Represents an algorithm whose performance is directly proportional to the square of the size of the input data set. This behavior is typical with algorithms that involve nested iterations over the data set. Deeper nested iterations will result in O(N3) (cubic time), O(N4) quartic time and worse.
 
-**Logarithmic Time**: Represents a highly efficient algorithm, used by the binary search technique for example.
+- **Logarithmic Time**: Represents a highly efficient algorithm, used by the binary search technique for example.
 
 We will cover the basics of Big-O. This knowledge is sufficient to understand the efficiency of the sorting algorithms presented in this course.
 
@@ -111,7 +111,7 @@ Actually, when testing with small datasets, we may even have the impression that
 
 # 	* [Constant Time Complexity](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 
-Constant Time describes an algorithm that will always require the same amount of time to execute, regardless of the input size.
+Constant Time describes an algorithm that will always require **the same amount of time to execute****, regardless of the input size.
 
 Here is what we get if we visualize the running time of an algorithm that executes in constant time.
 
@@ -121,11 +121,13 @@ The input size does not affect the execution time. In other words, the execution
 
 An algorithm which has a **constant time complexity will run for the same amount of time whether it operates on one or on several thousand or million entries**.
 
-We will implement a utility class for measuring the performance. We will use this utility class to perform measurements in the current demo and several other upcoming project.
+We will implement a utility class for measuring the performance. We will use this utility class to perform measurements in the current demo and several other upcoming project. [It would be nice write to this piece of code in Objective C, I will use this link to redirect to the project].
 
-To illustrate the constant time complexity, we will create a function that performs a check on an array.
+To illustrate the constant time complexity, we will create a function that performs a **check on an array**.
 
-The second example relies o the hash map lookup. We are going to compare the times required to retrieve values based on their keys from Swift dictionaries from Swift dictionaries of various sizes. If implemented correctly, the hash map lookup should happen in constant time.
+The second example relies o **the hash map lookup**. We are going to compare the times required to **retrieve values based on their keys** from Swift dictionaries from Swift dictionaries of various sizes. 
+
+If implemented correctly, **If the hash map lookup should happen in constant time**.
 
 First, we will implement the benchmarking utility. The BenchTimer class has a single method called measureBlock(closure:).
 
@@ -149,7 +151,7 @@ public class BenchTimer {
 }
 ```
 
-Remember the ways you can declare an array] [in Array Types Chapter](https://github.com/c4arl0s/Swift#2-array-types)
+[Remember the ways you can de	clare an array] [in Array Types Chapter](https://github.com/c4arl0s/Swift#2-array-types)
 Remember how to fill an array with a value in [Working with arrays](https://github.com/c4arl0s/Swift#3-working-with-arrays)
 
 The **measured(closure:)** type method takes a closure argument. The measured code is executed times, and we store the individual run times in an array.
@@ -164,7 +166,7 @@ After ten iterations, we calculate the **average execution time**. The **reduce(
 
 Finally, we divide the result by the number of iterations, which gives us **the average execution time.**
 
-Next, we write the code extension to format the time delivered by CFTimeInterval type
+Next, we write the code extension to format the time delivered by **CFTimeInterval** type
 
 ```swift
 public extension CFTimeInterval {
@@ -185,27 +187,7 @@ func startsWithZero(array: [Int]) -> Bool {
 
 This simple executes in constant time, that is, the run time should be the same regardless of the size of the input array.
 
-Let's prove our theory. We will invoke the startsWithZero() function with three arrays. The first array has only thee elements, the second one has 10,000 entries and the third array is huge, with 1,000,000 items.
-
-```swift
-import Foundation
-import QuartzCore
-
-public class BenchTimer {
-    public static func measureBlock(closure:() -> Void) -> CFTimeInterval {
-        let runCount = 10
-        var executionTimes = Array<Double>(repeating: 0.0, count: runCount)
-        for index in 0..<runCount {
-            let startTime = CACurrentMediaTime()
-            closure()
-            let endTime = CACurrentMediaTime()
-            let executionTime = endTime - startTime
-            executionTimes[index] = executionTime
-        }
-        return (executionTimes.reduce(0, +)) / Double(runCount)
-    }
-}
-```
+Let's prove our theory. We will invoke the **startsWithZero()** function with three arrays. The first array has only thee elements, the second one has 10,000 entries and the third array is huge, with 1,000,000 items.
 
 - Create a method to verify if the first element of an array is Zero
 
@@ -257,7 +239,7 @@ Average startsWithZero() execution time for array with 1000 elements is 111us
 Average startsWithZero() execution time for array with 1000000 elements is 102us
 ```
 
-Another Algorithm which runs in constant time is the hash-map lookup.
+Another Algorithm which runs in constant time is **the hash-map lookup**.
 We will use the **generateDictionary(size:)** helper function method to create custom-sized dictionaries.
 
 ```swift
@@ -337,7 +319,7 @@ This graph represents the running time of an algorithm which executes in linear 
 
 There is a 1 to 1 correlation between input size and execution time.
 
-The run time of an algorithm with linear time complexity will increase at the same time as the input dataset grows. 
+**The run time of an algorithm with linear time complexity will increase at the same time as the input dataset grows**. 
 
 For example, if one thousand entries took one second to process, then 10 thousand would require ten time as much, that is, 10 seconds, 100,000 entries would be processed in 100 seconds and so on. As input dataset grows, so will our algorithm processing time increase, too. That is why it is called linear time.
 
@@ -380,7 +362,7 @@ func sum(array: [Int]) -> Int {
 }
 ```
 
-We could use reduce() array function to calculate the sum, but implementing a custom solution makes it obvious that we iterate over the entire array.
+We could use **reduce()** array function to calculate the sum, but implementing a custom solution makes it obvious that we iterate over the entire array.
 
 We are going to test the **sum(array:)** function with three arrays of different sizes. The first array has 100 items, the next has 1000 and the last one has 10000 elements.
 
@@ -492,7 +474,7 @@ Now let's switch to Xcode.
 
 First, we implement a useful addition for our benchmarking utility:
 
-Carlos, remember that this implentation was not available for constant an linear time complexity chapters, so apply them all.
+Carlos, remember that this implentation was not available for constant an linear time complexity chapters, so implement it and fix the format time..
 
 ```swift
 import Foundation
@@ -1130,7 +1112,7 @@ The sumOptimezed is more efficient even for smaller values, and the difference j
 
 ![Screen Shot 2020-06-15 at 8 38 04](https://user-images.githubusercontent.com/24994818/84664062-9b07a480-aee3-11ea-8d14-1e2bb1f91b69.png)
 
-The optimized, sumOptimized() function does not depend on the input size, unlike the sum() function which runs in linear time.
+The optimized, sumOptimized() function does not depend on the input size, unlike the sum() function which **runs in linear time**.
 
 By applying this clever formula, we managed to implement a solution with an optimal performance.
 
@@ -1163,7 +1145,7 @@ For example, for the array of numbers 1,2,2,3,4, and the target value 4, our fun
 
 ![Screen Shot 2020-06-17 at 11 05 47](https://user-images.githubusercontent.com/24994818/84921861-a1845080-b08a-11ea-8362-7d2a08048a96.png)
 
-First, we are going to implement a solution which relies on nested iterations. Because of the nested iterations, this algorithm has a quadratic time complexity.
+First, we are going to implement a solution which **relies on nested iterations**. Because of the nested iterations, this algorithm has a **quadratic time complexity**.
 
 Then, we are going to come up with an algorithm which operates in linear time rather than quadratic time.
 
@@ -1173,7 +1155,7 @@ Here is the first attempt to solve this problem:
 
 > At this stage of the lecture, the book suggest me only return a tuple when it finds it. To improve the code I return and array of tuples to find all solutions.
 
-```switf
+```swift
 func findTwoSum(_ array: [Int], target: Int) -> [(Int, Int)]? {
     guard array.count > 1 else { return nil }
     var tupleArray = [(Int, Int)]()
@@ -1294,6 +1276,70 @@ Optional([(1, 2), (0, 3)])
 ```
 
 # 	* [Find the Equilibrium Index](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
+
+The equilibrium index of an array is an index such that the sum of the elements at lower indices is equal to the sum of the elements at higher indices.
+
+For example, in an array A with the numbers [-3, 2, -2, 1, -2], 1 and 2 are equilibrium indices:
+
+![Screen Shot 2020-06-23 at 12 11 08](https://user-images.githubusercontent.com/24994818/85433870-bb220e00-b54a-11ea-905f-4f2c1c24c07c.png)
+
+1 is an equilibrium index, because: 
+
+A[0] = A[2] + A[3] + A[4]
+
+that is:
+
+-3 = -2 +1 + (-2)
+
+2 is also an equilibrium index, because the sum of elements at indices 0 and 1 is equal to the sum of elements at indices 3 and 4:
+
+-3 + 2 = 1 + (-2)
+
+We are going to implement a function that given an array returns the equilibrium indices or nil if the array has no equilibrium index.
+
+First, we will come up with a brute-force solution. Then, we will come up with an algorithmic that executes in linear time by applying some basic math.
+
+```switf
+func equilibrium(_ numbers: [Int]) -> [Int]? {
+    guard numbers.count > 0 else { return nil }
+    var indices = [Int]()
+    var left = 0
+    var right = 0
+    let count = numbers.count
+    for index in 0..<count {
+        left = 0
+        right = 0
+        for j in 0..<index {
+            left = left + numbers[j]
+        }
+        for j in index+1..<count {
+            right = right + numbers[j]
+        }
+        if left == right {
+            indices.append(index)
+        }
+    }
+    return indices.isEmpty ? nil : indices
+}
+```
+
+The **equilibrium()** function uses three loops. The outer loop iterates through all elements of the array.
+
+We nee two inner loops to find out whether the current index picked by the outer loop is an equilibrium index or not.
+
+The first inner loop tracks the sum of the elements at lower indices. The second inner loop keeps track of the sum of items at higher indices.
+
+In other words, we split the array at the position of the outer index. Then, we compare the sum of the elements of the two arrays.
+
+If the sums are equal, we found an equilibrium index, and we add it to the array of indices. Else we keep iterating further.
+
+The worst time complexity of this solution is **quadratic**.
+
+Updating the left and right sums using two inner loop is a simple but also a very inefficient approach.
+
+Here is a solution that does not require nested loops.
+
+
 # 	* [Summary](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 5. [Generics](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)
 # 	* [Why Generics?](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift#algorithms-and-data-structures-in-swift)

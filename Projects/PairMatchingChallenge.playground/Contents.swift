@@ -14,16 +14,16 @@ func findTwoSum(_ array: [Int], target: Int) -> [(Int, Int)]? {
     return tupleArray
 }
 
-let test = [1, 2, 2, 3, 4]
-let result = findTwoSum(test, target: 4)
-print(result)
+let testedArray = [1, 2, 2, 3, 4]
+let result = findTwoSum(testedArray, target: 4)
+print(result!)
 
-func findTwoSumOptimized(_ array: [Int], target: Int) -> [(Int, Int)]? {
-    guard array.count > 1 else { return nil }
+func findTwoSumOptimized(_ testedArray: [Int], target: Int) -> [(Int, Int)]? {
+    guard testedArray.count > 1 else { return nil }
     var tupleArray = [(Int, Int)]()
     var diffs = Dictionary<Int,Int>()
-    for leftIndex in 0..<array.count {
-        let left = array[leftIndex]
+    for leftIndex in 0..<testedArray.count {
+        let left = testedArray[leftIndex]
         let right = target-left
         if let foundIndex = diffs[right] {
             tupleArray.append((foundIndex, leftIndex))
@@ -34,5 +34,5 @@ func findTwoSumOptimized(_ array: [Int], target: Int) -> [(Int, Int)]? {
 return tupleArray
 }
 
-let optimizedResult = findTwoSumOptimized(test, target: 4)
-print(optimizedResult)
+let optimizedResult = findTwoSumOptimized(testedArray, target: 4)
+print(optimizedResult!)
