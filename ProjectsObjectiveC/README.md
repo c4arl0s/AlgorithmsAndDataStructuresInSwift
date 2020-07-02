@@ -1,7 +1,9 @@
 # BenchTimer
 
-1. [BenchTimer]()
-2. [BenchTimer Optimized]()
+1. [BenchTimer](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#1-benchtimer)
+2. [BenchTimer Optimized](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#2-benchtimer-optimized)
+3. [BenchTimer Optimized with formatted time (with spaghuetti code]()
+4. [BenchTimer Optimized with formatted time (using nested ternaries]()
 
 
 # 1. [BenchTimer]()
@@ -108,3 +110,66 @@ Sum each execution time calculation inside each iteration:
 2020-06-29 16:18:18.454321-0500 BenchTimer_ObjectiveC[25961:771902] execution time: 0.000455569
 Program ended with exit code: 0
 ```
+
+# 3. [BenchTimer Optimized with formatted time (with spaghuetti code)]()
+
+In BenchTimer.m Suppress the executeTimes array because it is not needed
+
+```objective-c
+#import "BenchTimer.h"
+#import <QuartzCore/QuartzCore.h>
+
+@implementation BenchTimer
+
++ (CFTimeInterval)measureBlock:(void (^)(void))block
+{
+    NSUInteger runCount = 3;
+    CFTimeInterval sum = 0.0;
+    for (NSUInteger index = 0; index < runCount; index++) {
+        CFTimeInterval startTime = CACurrentMediaTime();
+        block();
+        CFTimeInterval endTime = CACurrentMediaTime();
+        CFTimeInterval executionTime = endTime - startTime;
+        sum += executionTime;
+    }
+    CFTimeInterval averageExecutionTime = (sum / runCount);
+    return averageExecutionTime;
+}
+@end
+```
+
+In main(), format the double value to print seconds, miliseconds, microseconds or nanosecods.
+
+```objective-c
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        double value = [BenchTimer measureBlock:^{
+            NSLog(@"hello");
+        }];
+        NSString *formattedTime = [[NSString alloc] init];
+        if (value >= 1000) {
+            formattedTime = [NSString stringWithFormat:@"%.20lf [s]", value];
+        } else if (value >= 1) {
+            formattedTime = [NSString stringWithFormat:@"%.3g[s]", value];
+        } else if (value >= 1e-3) {
+            formattedTime = [NSString stringWithFormat:@"%.3g[ms]", value*1e3];
+        } else if (value >= 1e-6) {
+            formattedTime = [NSString stringWithFormat:@"%.3g[us]", value*1e6];
+        } else if (value < 1e-9) {
+            formattedTime = @"0 [s]";
+        } else {
+            formattedTime = [NSString stringWithFormat:@"%.3g[ns]", value*1e9];
+        }
+    
+        NSLog(@"execution time: %@", formattedTime);
+        
+    }
+    return 0;
+}
+
+```console
+2020-07-02 17:48:13.265832-0500 BenchTimer_ObjectiveC[61345:2569805] execution time: 162us
+Program ended with exit code: 0
+```
+
+# 4. [BenchTimer Optimized with formatted time (using nested ternaries)]()
