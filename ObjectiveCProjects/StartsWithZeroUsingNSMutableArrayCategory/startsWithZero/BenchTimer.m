@@ -32,7 +32,7 @@
 + (NSString *)measureBlockWithFormattedTime:(void (^)(void))block
 {
     NSUInteger runCount = 10;
-    CFTimeInterval sum = 0.0;
+    CFTimeInterval sum = 0.0    ;
     NSMutableArray *executionTimes = [[NSMutableArray alloc] init];
     for (NSUInteger index = 0; index < runCount; index++) {
         CFTimeInterval startTime = CACurrentMediaTime();

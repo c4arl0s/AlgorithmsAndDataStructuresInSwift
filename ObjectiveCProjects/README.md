@@ -6,8 +6,8 @@
 4. [BenchTimer Optimized with formatted time (using nested ternaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#4-benchtimer-optimized-with-formatted-time-using-nested-ternaries)
 5. [startsWithZero function](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ObjectiveCProjects#5-startswithzero-function)
 6. [Create a Class method for BenchTimer to format time]()
-
-
+7. [Create a helper function to create an array with specific number of elements and its value]()
+9. [Create a Category for NSMutableArray called NSMutableArray+CreateArrayWithNumberOfObjectsAndValue]()
 
 # 1. [BenchTimer]()
 
@@ -285,6 +285,100 @@ In console:
 
 ```console
 2020-07-18 08:32:04.105499-0500 startsWithZero[14307:654719] Average startsWithZero() execution time for array with 3 elements is: 1.82[us]
+Program ended with exit code: 0
+```
+
+# 7. [Create a helper function to create an array with specific number of elements and its value]()
+
+
+Prototype function:
+
+```objective-c
+NSMutableArray *createArrayWithNumberOfElements(int numberOfElements, int valueOfEachElement);
+```
+
+definition:
+
+```objective-c
+NSMutableArray *createArrayWithNumberOfElements(int numberOfElements, int valueOfEachElement)
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int index=0; index<numberOfElements; index++) {
+        [array insertObject:[NSNumber numberWithInt:valueOfEachElement] atIndex:index];
+    }
+    return array;
+}
+```
+
+Call it in main
+
+
+```objective-c
+NSArray *smallArray = createArrayWithNumberOfElements(3,0);
+NSMutableArray *mediumArray = createArrayWithNumberOfElements(100000,0);
+NSMutableArray *hugeArray = createArrayWithNumberOfElements(1000000,0);
+```
+
+Build and run.
+
+```console
+2020-07-18 12:03:55.847387-0500 startsWithZero[16570:768643] Average execution time: 1.93[us], numberOfElements 3 for startsWithZero() array
+2020-07-18 12:03:55.854143-0500 startsWithZero[16570:768643] Average execution time: 402[ns], numberOfElements 100000 for startsWithZero() array
+2020-07-18 12:03:55.912104-0500 startsWithZero[16570:768643] Average execution time: 424[ns], numberOfElements 1000000 for startsWithZero() array
+Program ended with exit code: 0
+```
+
+# 9. [Create a Category for NSMutableArray called NSMutableArray+CreateArrayWithNumberOfObjectsAndValue]()
+
+In NSMutableArray+CreateArrayWithNumberOfObjectsAndValue.h
+
+```objective-c
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSMutableArray (CreateArrayWithNumberOfObjectsAndValue)
+- (NSMutableArray *)createArrayWithNumberOfElements:(int)numberOfElements valueOfEachElement:(int)valueOfEachElement;
+@end
+
+NS_ASSUME_NONNULL_END
+```
+
+In NSMutableArray+CreateArrayWithNumberOfObjectsAndValue.m
+
+```objective-c
+#import "NSMutableArray+CreateArrayWithNumberOfObjectsAndValue.h"
+
+@implementation NSMutableArray (CreateArrayWithNumberOfObjectsAndValue)
+- (NSMutableArray *)createArrayWithNumberOfElements:(int)numberOfElements valueOfEachElement:(int)valueOfEachElement
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (int index=0; index<numberOfElements; index++) {
+        [array insertObject:[NSNumber numberWithInt:valueOfEachElement] atIndex:index];
+    }
+    return array;
+}
+@end
+```
+
+In main.m
+
+```objective-c
+NSArray *smallArray = [[[NSMutableArray alloc] init] createArrayWithNumberOfElements:3 valueOfEachElement:1];
+```
+
+```objective-c
+NSMutableArray *mediumArray = [[[NSMutableArray alloc] init] createArrayWithNumberOfElements:10000 valueOfEachElement:1];
+```
+
+```objective-c
+NSMutableArray *hugeArray = [[[NSMutableArray alloc] init] createArrayWithNumberOfElements:1000000 valueOfEachElement:1];
+```
+
+```console
+2020-07-18 12:05:13.649292-0500 startsWithZero[16605:770217] Average execution time: 1.25[us], numberOfElements 3 for startsWithZero() array
+2020-07-18 12:05:13.656807-0500 startsWithZero[16605:770217] Average execution time: 480[ns], numberOfElements 100000 for startsWithZero() array
+2020-07-18 12:05:13.709525-0500 startsWithZero[16605:770217] Average execution time: 333[ns], numberOfElements 1000000 for startsWithZero() array
 Program ended with exit code: 0
 ```
 
