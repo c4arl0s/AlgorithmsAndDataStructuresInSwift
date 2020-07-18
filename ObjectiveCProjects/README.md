@@ -4,7 +4,7 @@
 2. [BenchTimer Optimized](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#2-benchtimer-optimized)
 3. [BenchTimer Optimized with formatted time (with spaghuetti code](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#3-benchtimer-optimized-with-formatted-time-with-spaghuetti-code)
 4. [BenchTimer Optimized with formatted time (using nested ternaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#4-benchtimer-optimized-with-formatted-time-using-nested-ternaries)
-
+5. [startsWithZero function]()
 
 # 1. [BenchTimer]()
 
@@ -220,3 +220,36 @@ Program ended with exit code: 0
 ```
 
 
+# 5. [startsWithZero function]()
+
+In main.m import BenchTimer.h, then write a function
+
+```objective-c
+bool startsWithZero(NSArray *array)
+{
+    if ([array count] == 0) {
+        return false;
+    }
+    NSNumber *integerNumber = [[NSNumber alloc] initWithInt:0];
+    return [array objectAtIndex:0] == integerNumber ? true : false;
+}
+```
+
+Inside main():
+
+```objective-c
+    NSArray *smallArray = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+    CFTimeInterval executionTime = [BenchTimer measureBlock:^{
+        BOOL result = startsWithZero(smallArray);
+    }];
+    NSLog(@"Average startsWithZero() execution time for array with %lu elements is: %f", (unsigned long)[smallArray count], executionTime);
+}
+    return 0;
+```
+
+console:
+
+```console
+2020-07-18 07:30:18.676858-0500 startsWithZero[13657:620398] Average startsWithZero() execution time for array with 3 elements is: 0.000001
+Program ended with exit code: 0
+```
