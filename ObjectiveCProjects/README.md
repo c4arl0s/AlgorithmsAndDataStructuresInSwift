@@ -4,7 +4,10 @@
 2. [BenchTimer Optimized](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#2-benchtimer-optimized)
 3. [BenchTimer Optimized with formatted time (with spaghuetti code](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#3-benchtimer-optimized-with-formatted-time-with-spaghuetti-code)
 4. [BenchTimer Optimized with formatted time (using nested ternaries](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ProjectsObjectiveC#4-benchtimer-optimized-with-formatted-time-using-nested-ternaries)
-5. [startsWithZero function]()
+5. [startsWithZero function](https://github.com/c4arl0s/AlgorithmsAndDataStructuresInSwift/tree/master/ObjectiveCProjects#5-startswithzero-function)
+6. [Create a Class method for BenchTimer to format time]()
+
+
 
 # 1. [BenchTimer]()
 
@@ -178,26 +181,6 @@ Program ended with exit code: 0
 
 Delete spaghetti code and replace it with nested ternaries.
 
-before:
-
-```objective-c
-if (value >= 1000) {
-    formattedTime = [NSString stringWithFormat:@"%.20lf [s]", value];
-} else if (value >= 1) {
-    formattedTime = [NSString stringWithFormat:@"%.3g[s]", value];
-} else if (value >= 1e-3) {
-    formattedTime = [NSString stringWithFormat:@"%.3g[ms]", value*1e3];
-} else if (value >= 1e-6) {
-    formattedTime = [NSString stringWithFormat:@"%.3g[us]", value*1e6];
-} else if (value < 1e-9) {
-    formattedTime = @"0 [s]";
-} else {
-    formattedTime = [NSString stringWithFormat:@"%.3g[ns]", value*1e9];
-}
-```
-
-
-after:
 
 ```objective-c
 formattedTime = value >= 1000 ? [NSString stringWithFormat:@"%.20lf [s]", value] : value >= 1 ? [NSString stringWithFormat:@"%.3g[s]", value] : value >= 1e-3 ? [NSString stringWithFormat:@"%.3g[ms]", value*1e3] : value >= 1e-6 ? [NSString stringWithFormat:@"%.3g[us]", value*1e6] : value < 1e-9 ? @"0  [s]" : [NSString stringWithFormat:@"%.3g[ns]", value*1e9];
@@ -253,3 +236,56 @@ console:
 2020-07-18 07:30:18.676858-0500 startsWithZero[13657:620398] Average startsWithZero() execution time for array with 3 elements is: 0.000001
 Program ended with exit code: 0
 ```
+
+# 6. [Create a Class method for BenchTimer to format time]()
+
+In BenchTimer.h
+
+```objective-c
++ (NSString *)measureBlockWithFormattedTime:(void (^)(void))block;
+```
+
+In BenchTimer.m
+
+```objective-c
++ (NSString *)measureBlockWithFormattedTime:(void (^)(void))block
+{
+    NSUInteger runCount = 10;
+    CFTimeInterval sum = 0.0;
+    NSMutableArray *executionTimes = [[NSMutableArray alloc] init];
+    for (NSUInteger index = 0; index < runCount; index++) {
+        CFTimeInterval startTime = CACurrentMediaTime();
+        block();
+        CFTimeInterval endTime = CACurrentMediaTime();
+        CFTimeInterval executionTime = endTime - startTime;
+        sum += executionTime;
+        NSNumber *nsNumberExecutionTime = [NSNumber numberWithDouble:executionTime];
+        [executionTimes insertObject:nsNumberExecutionTime atIndex:index];
+    }
+    CFTimeInterval averageExecutionTime = sum / (CFTimeInterval)(runCount);
+
+    NSString *formattedExecutionTime = [[NSString alloc] init];
+    formattedExecutionTime = averageExecutionTime >= 1000 ? [NSString stringWithFormat:@"%.20lf [s]", averageExecutionTime] : averageExecutionTime >= 1 ? [NSString stringWithFormat:@"%.3g[s]", averageExecutionTime] : averageExecutionTime >= 1e-3 ? [NSString stringWithFormat:@"%.3g[ms]", averageExecutionTime*1e3] : averageExecutionTime >= 1e-6 ? [NSString stringWithFormat:@"%.3g[us]", averageExecutionTime*1e6] : averageExecutionTime < 1e-9 ? @"0  [s]" : [NSString stringWithFormat:@"%.3g[ns]", averageExecutionTime*1e9];
+    return formattedExecutionTime;
+}
+```
+
+Then when you use BenchTimer class use the method in main.m
+
+```objective-c
+NSArray *smallArray = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
+        NSString *formattedTime = [BenchTimer measureBlockWithFormattedTime:^{
+            BOOL result = startsWithZero(smallArray);
+        }];
+    
+        NSLog(@"Average startsWithZero() execution time for array with %lu elements is: %@", (unsigned long)[smallArray count], formattedTime);
+```
+
+In console:
+
+```console
+2020-07-18 08:32:04.105499-0500 startsWithZero[14307:654719] Average startsWithZero() execution time for array with 3 elements is: 1.82[us]
+Program ended with exit code: 0
+```
+
+
