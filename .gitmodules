@@ -1,0 +1,27 @@
+[submodule "AlgorithmsAndDataStructuresInSwiftGeneralIndex"]
+	path = AlgorithmsAndDataStructuresInSwiftGeneralIndex
+	url = git@github.com:c4arl0s/AlgorithmsAndDataStructuresInSwiftGeneralIndex.git
+[submodule "1IntroductionAADSSwift"]
+	path = 1IntroductionAADSSwift
+	url = git@github.com:c4arl0s/1IntroductionAADSSwift.git
+[submodule "2TheBig-O_NotationAADSSwift"]
+	path = 2TheBig-O_NotationAADSSwift
+	url = git@github.com:c4arl0s/2TheBig-O_NotationAADSSwift.git
+[submodule "3RecursionAADSSwift"]
+	path = 3RecursionAADSSwift
+	url = git@github.com:c4arl0s/3RecursionAADSSwift.git
+[submodule "4ThePowerOfAlgorithmsAADSSwift"]
+	path = 4ThePowerOfAlgorithmsAADSSwift
+	url = git@github.com:c4arl0s/4ThePowerOfAlgorithmsAADSSwift.git
+[submodule "5GenericsAADSSwift"]
+	path = 5GenericsAADSSwift
+	url = git@github.com:c4arl0s/5GenericsAADSSwift.git
+[submodule "6TheBuildInSwiftcollectionTypesAADSSwift"]
+	path = 6TheBuildInSwiftcollectionTypesAADSSwift
+	url = git@github.com:c4arl0s/6TheBuildInSwiftcollectionTypesAADSSwift.git
+[submodule "7BasicSortingAADSSwift"]
+	path = 7BasicSortingAADSSwift
+	url = git@github.com:c4arl0s/7BasicSortingAADSSwift.git
+[submodule "8AdvanceSortingAADSSwift"]
+	path = 8AdvanceSortingAADSSwift
+	url = git@github.com:c4arl0s/8AdvanceSortingAADSSwift.git
